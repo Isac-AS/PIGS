@@ -10,6 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomMaterialModule } from './material.module';
 import { LayoutModule } from '@angular/cdk/layout';
 
+
+//----------------------
 // Pages
 import { HomePageComponent } from './pages/home-page/home-page.component';
 
@@ -36,12 +38,20 @@ import { ManageAuxPageComponent } from './pages/auxiliary-items-related-pages/ma
 import { AddProviderPageComponent } from './pages/provider-related-pages/add-provider-page/add-provider-page.component';
 import { ManageProvidersPageComponent } from './pages/provider-related-pages/manage-providers-page/manage-providers-page.component';
 
+
+//----------------------
 // Components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/common/header/header.component';
 import { FooterComponent } from './components/common/footer/footer.component';
 import { ThemePickerComponent } from './components/theme-picker/theme-picker.component';
 
+// User related
+import { UserTableComponent } from './components/0-user-related-components/user-table/user-table.component';
+import { UserDetailsComponent } from './components/0-user-related-components/user-details/user-details.component';
+import { UserModificationComponent } from './components/0-user-related-components/user-modification/user-modification.component';
+
+//----------------------
 // Dialogs
 import { EntryDeletionDialogComponent } from './components/entry-deletion-dialog/entry-deletion-dialog.component';
 
@@ -62,6 +72,9 @@ import { DatabaseService } from './services/database.service';
     HeaderComponent,
     FooterComponent,
     ThemePickerComponent,
+    UserTableComponent,
+    UserDetailsComponent,
+    UserModificationComponent,
 
     // Pages
     HomePageComponent,

@@ -1,0 +1,39 @@
+<mat-card id="user-information-card">
+  <mat-card-header>
+    <mat-card-title>
+      Information about: {{selectedUser.name}}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>
+        <span matListItemTitle>Username</span>
+        <span matListItemLine>{{selectedUser.name}}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span matListItemTitle>Full Name</span>
+        <span matListItemLine>{{selectedUser.contactInfo.fullName}}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span matListItemTitle>Telephone Number</span>
+        <span matListItemLine>{{selectedUser.contactInfo.phoneNumber}}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span matListItemTitle>Email</span>
+        <span matListItemLine>{{selectedUser.email}}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span matListItemTitle>Profile</span>
+        <span matListItemLine>{{selectedUser.profile}}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span matListItemTitle>Address</span>
+        <span matListItemLine>{{selectedUser.contactInfo.address}}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span matListItemTitle>Database ID</span>
+        <span matListItemLine>{{selectedUser.id}}</span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

@@ -1,21 +1,4 @@
-<mat-card id="register-banner" color="primary" [class.mat-elevation-z8]="true">
-  <mat-card-header>
-    <mat-card-title>
-      Registro
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    Without registration this app is useless
-  </mat-card-content>
-  <mat-card-actions>
-    <a mat-raised-button color="accent" routerLink="/login">
-      <span>¿Ya estás registrado? Inicia sesión</span>
-      <mat-icon>login</mat-icon>
-    </a>
-  </mat-card-actions>
-</mat-card>
-
-<form [formGroup]="userForm" (ngSubmit)="register()">
+<form [formGroup]="userForm" (ngSubmit)="submit()">
   <mat-card class="user-form-card">
     <mat-card-header>
       <mat-card-title>
@@ -84,17 +67,7 @@
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions id="submit-card-actions">
-      <button mat-raised-button color="accent" type="submit" [disabled]="!userForm.valid">Registrarse</button>
+      <button mat-raised-button color="accent" type="submit" [disabled]="!userForm.valid">Modify</button>
     </mat-card-actions>
-  </mat-card>
-  <mat-card class="error-form-card" *ngIf="invalidAnswerFromBackend">
-    <mat-card-header>
-      <mat-card-title>
-        The following errors were found:
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      1 - E-mail already in use.
-    </mat-card-content>
   </mat-card>
 </form>

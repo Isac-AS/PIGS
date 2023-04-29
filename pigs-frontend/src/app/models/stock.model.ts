@@ -1,3 +1,9 @@
+export interface Order {
+  dishes: Dish[],
+  menus: Menu[],
+  price: number,
+}
+
 export interface Menu {
   name: string,
   dishes: Dish[],
