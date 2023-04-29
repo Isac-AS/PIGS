@@ -1,0 +1,66 @@
+<app-header></app-header>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+        <mat-toolbar>Menu</mat-toolbar>
+        <mat-nav-list>
+            <mat-list-item routerLink="/home">
+                <span id="home-page-list-item">Página principal</span>
+            </mat-list-item>
+            <!--Orders-->
+            <mat-expansion-panel [class.mat-elevation-z0]="true"
+                *ngIf="currentLoggedProfile == 'OWNER' || currentLoggedProfile == 'MANAGER' || currentLoggedProfile == 'EMPLOYEE'">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Orders
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-nav-list>
+                    <a mat-list-item routerLink="/">New Order</a>
+                    <a mat-list-item routerLink="/">Pending Orders</a>
+                </mat-nav-list>
+            </mat-expansion-panel>
+            <!--Items-->
+            <mat-expansion-panel [class.mat-elevation-z0]="true"
+                *ngIf="currentLoggedProfile == 'OWNER' || currentLoggedProfile == 'MANAGER'">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Items
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-nav-list>
+                    <a mat-list-item routerLink="/">Menus</a>
+                    <a mat-list-item routerLink="/">Dishes</a>
+                    <a mat-list-item routerLink="/">Ingredients</a>
+                    <a mat-list-item routerLink="/">Auxiliary Items</a>
+                </mat-nav-list>
+            </mat-expansion-panel>
+            <!--Users/Employees-->
+            <mat-expansion-panel [class.mat-elevation-z0]="true"
+                *ngIf="currentLoggedProfile == 'OWNER'">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Employees
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-nav-list>
+                    <a mat-list-item routerLink="/">View employees</a>
+                    <a mat-list-item routerLink="/">Statistics</a>
+                </mat-nav-list>
+            </mat-expansion-panel>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary" [class.mat-elevation-z8]="true">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+                *ngIf="isHandset$ | async">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <span class="current-page-name">{{currentPageName}}</span>
+        </mat-toolbar>
+        <div style="padding: 0 1.5em;">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+<app-footer></app-footer>
