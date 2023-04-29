@@ -41,7 +41,7 @@ export class GlobalService {
                     name: "",
                     id: "",
                     photoURL: "",
-                    profile: 'NONE',
+                    profile: 'OWNER',
                     path: "users",
                 },
                 isLoggedIn: false

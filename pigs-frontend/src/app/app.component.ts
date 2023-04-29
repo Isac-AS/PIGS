@@ -4,6 +4,16 @@ import { map, shareReplay } from 'rxjs/operators';
 import { GlobalService } from './services/global.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
+export interface CRUD_ARRAY_ENTRY {
+  title: string,
+  routes: CRUD_ARRAY_ENTRY_ROUTES[],
+}
+
+export interface CRUD_ARRAY_ENTRY_ROUTES {
+  route: string,
+  name: string,
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,7 +22,45 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 export class AppComponent {
   title = 'TFG_frontend';
   currentPageName = '';
-  currentLoggedProfile = '0';
+  currentLoggedProfile = 'NONE';
+
+  CRUD_ARRAY: CRUD_ARRAY_ENTRY[] = [
+    {
+      title: "Menu", 
+      routes: [
+        {route: "/add_menu", name: "Add Menu"},
+        {route: "/manage_menus", name: "Manage Menus"},
+      ]
+    },
+    {
+      title: "Dish", 
+      routes: [
+        {route: "/add_dish", name: "Add Dish"},
+        {route: "/manage_dishes", name: "Manage Dishes"},
+      ]
+    },
+    {
+      title: "Ingredients", 
+      routes: [
+        {route: "/add_ingredient", name: "Add Ingredient"},
+        {route: "/manage_ingredients", name: "Manage Ingredients"},
+      ]
+    },
+    {
+      title: "Aux Items", 
+      routes: [
+        {route: "/add_aux", name: "Add Items"},
+        {route: "/manage_aux", name: "Manage Items"},
+      ]
+    },
+    {
+      title: "Providers", 
+      routes: [
+        {route: "/add_providers", name: "Add Provider"},
+        {route: "/manage_providers", name: "Manage Provider"},
+      ]
+    },
+  ]
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

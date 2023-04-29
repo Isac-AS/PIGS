@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   async logout() {
-    return this.authFirebase.signOut().then(() => {alert("Logged Out!")});
+    return this.authFirebase.signOut();
   }
 
   register(data: CurrentUser) {
