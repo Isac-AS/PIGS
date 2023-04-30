@@ -4,31 +4,26 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { EntryDeletionDialogComponent } from '../../entry-deletion-dialog/entry-deletion-dialog.component';
-import { CurrentUser } from 'src/app/models/user.model';
 import { DatabaseService } from 'src/app/services/database.service';
+import { Menu } from 'src/app/models/stock.model';
 
 @Component({
-  selector: 'app-user-table',
-  templateUrl: './user-table.component.html',
-  styleUrls: ['./user-table.component.scss']
+  selector: 'app-menu-table',
+  templateUrl: './menu-table.component.html',
+  styleUrls: ['./menu-table.component.scss']
 })
-export class UserTableComponent {
+export class MenuTableComponent {
 
-  @Output() selectedUserEmitter: any = new EventEmitter<any>()
+  @Output() selectedMenuEmitter: any = new EventEmitter<any>()
 
-  userList: CurrentUser[] = [];
-  displayedColumns: string[] = ['selected', 'name', 'phoneNumber', 'profile', 'delete']
-  dataSource: MatTableDataSource<CurrentUser>;
+  menuList: Menu[] = [];
+  displayedColumns: string[] = ['selected', 'name', 'price', 'delete']
+  dataSource: MatTableDataSource<Menu>;
 
-  selectedUser: CurrentUser = {
-    email: "",
-    password: "",
-    contactInfo: { address: "", fullName: "", phoneNumber: 0 },
+  selectedMenu: Menu = {
     name: "",
-    id: "",
-    photoURL: "",
-    profile: 'NONE',
-    path: "users",
+    dishes: [],
+    path: "menus"
   }
 
   resultsLength = 0;
@@ -42,8 +37,8 @@ export class UserTableComponent {
     private database: DatabaseService,
     public dialog: MatDialog,
   ) {
-    this.dataSource = new MatTableDataSource(this.userList);
-    this.fetchUsers();
+    this.dataSource = new MatTableDataSource(this.menuList);
+    this.fetchMenus();
   }
 
   applyFilter(event: Event) {
@@ -55,41 +50,41 @@ export class UserTableComponent {
     }
   }
 
-  fetchUsers() {
-    this.database.readCollection<CurrentUser>("users").subscribe({
-      next: (users) => {
-        console.log("[DEBUG] - Users collection")
-        console.log(users)
-        this.userList = users;
-        this.dataSource = new MatTableDataSource(this.userList);
+  fetchMenus() {
+    this.database.readCollection<Menu>("menus").subscribe({
+      next: (menus) => {
+        console.log("[DEBUG] - Menus collection")
+        console.log(menus)
+        this.menuList = menus;
+        this.dataSource = new MatTableDataSource(this.menuList);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }
     })
   }
 
-  openDeletionDialog(user_id: string) {
+  openDeletionDialog(menu_id: string) {
     const dialogRef = this.dialog.open(EntryDeletionDialogComponent)
     dialogRef.afterClosed().subscribe(
       result => {
         if (result == true) {
-          this.deleteUser(user_id)
+          this.deleteMenu(menu_id)
         }
         console.log(result)
       }
     )
   }
 
-  deleteUser(user_id: string) {
-    this.database.deleteDocument("users", user_id).catch(
+  deleteMenu(menu_id: string) {
+    this.database.deleteDocument("menus", menu_id).catch(
       (error) => {
         console.log(error)
       })
-    this.fetchUsers();
+    this.fetchMenus();
   }
 
-  emitUser(user: CurrentUser) {
-    this.selectedUserEmitter.emit(user)
+  emitMenu(menu: Menu) {
+    this.selectedMenuEmitter.emit(menu)
   }
 
 }

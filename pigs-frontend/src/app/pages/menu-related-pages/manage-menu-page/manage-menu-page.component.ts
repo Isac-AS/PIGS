@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Menu } from 'src/app/models/stock.model';
 import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
@@ -8,11 +9,21 @@ import { GlobalService } from 'src/app/services/global.service';
 })
 export class ManageMenuPageComponent {
 
+  selectedMenu: Menu = {
+    name: "",
+    dishes: [],
+    path: "menus"
+  }
+
   constructor(
     public globalService: GlobalService
   ) {
     this.globalService.pageName.next({
       currentPageName: 'Manage Menus'
     })
-   }
+  }
+
+  updateSelectedMenu(user: Menu) {
+    this.selectedMenu = user;
+  }
 }

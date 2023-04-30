@@ -1,3 +1,16 @@
-<p>
-  manage-menu-page works!
-</p>
+<mat-tab-group>
+  <!--Menu table tab-->
+  <mat-tab label="Menu Table">
+    <app-menu-table (selectedMenuEmitter)="updateSelectedMenu($event)"></app-menu-table>
+  </mat-tab>
+
+  <!--Menu Info tab-->
+  <mat-tab label="Detailed Menu Information">
+    <app-menu-details [selectedMenu]="selectedMenu"></app-menu-details>
+  </mat-tab>
+
+  <!--Menu edition tab-->
+  <mat-tab label="Modify Menu">
+    <app-menu-modification [selectedMenu]="selectedMenu"></app-menu-modification>
+  </mat-tab>
+</mat-tab-group>

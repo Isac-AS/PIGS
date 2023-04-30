@@ -1,3 +1,16 @@
-<p>
-  manage-dishes-page works!
-</p>
+<mat-tab-group>
+  <!--Dish table tab-->
+  <mat-tab label="Dish Table">
+    <app-dish-table (selectedDishEmitter)="updateSelectedDish($event)"></app-dish-table>
+  </mat-tab>
+
+  <!--Dish Info tab-->
+  <mat-tab label="Detailed Dish Information">
+    <app-dish-details [selectedDish]="selectedDish"></app-dish-details>
+  </mat-tab>
+
+  <!--Dish edition tab-->
+  <mat-tab label="Modify Dish">
+    <app-dish-modification [selectedDish]="selectedDish"></app-dish-modification>
+  </mat-tab>
+</mat-tab-group>

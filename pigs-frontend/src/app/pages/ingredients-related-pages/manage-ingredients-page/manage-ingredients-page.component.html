@@ -1,3 +1,16 @@
-<p>
-  manage-ingredients-page works!
-</p>
+<mat-tab-group>
+  <!--Ingredient table tab-->
+  <mat-tab label="Ingredient Table">
+    <app-ingredient-table (selectedIngredientEmitter)="updateSelectedIngredient($event)"></app-ingredient-table>
+  </mat-tab>
+
+  <!--Ingredient Info tab-->
+  <mat-tab label="Detailed Ingredient Information">
+    <app-ingredient-details [selectedIngredient]="selectedIngredient"></app-ingredient-details>
+  </mat-tab>
+
+  <!--Ingredient edition tab-->
+  <mat-tab label="Modify Ingredient">
+    <app-ingredient-modification [selectedIngredient]="selectedIngredient"></app-ingredient-modification>
+  </mat-tab>
+</mat-tab-group>

@@ -4,31 +4,28 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { EntryDeletionDialogComponent } from '../../entry-deletion-dialog/entry-deletion-dialog.component';
-import { CurrentUser } from 'src/app/models/user.model';
 import { DatabaseService } from 'src/app/services/database.service';
+import { Ingredient } from 'src/app/models/stock.model';
 
 @Component({
-  selector: 'app-user-table',
-  templateUrl: './user-table.component.html',
-  styleUrls: ['./user-table.component.scss']
+  selector: 'app-ingredient-table',
+  templateUrl: './ingredient-table.component.html',
+  styleUrls: ['./ingredient-table.component.scss']
 })
-export class UserTableComponent {
+export class IngredientTableComponent {
 
-  @Output() selectedUserEmitter: any = new EventEmitter<any>()
+  @Output() selectedIngredientEmitter: any = new EventEmitter<any>()
 
-  userList: CurrentUser[] = [];
-  displayedColumns: string[] = ['selected', 'name', 'phoneNumber', 'profile', 'delete']
-  dataSource: MatTableDataSource<CurrentUser>;
+  ingredientList: Ingredient[] = [];
+  displayedColumns: string[] = ['selected', 'name', 'quantity', 'delete']
+  dataSource: MatTableDataSource<Ingredient>;
 
-  selectedUser: CurrentUser = {
-    email: "",
-    password: "",
-    contactInfo: { address: "", fullName: "", phoneNumber: 0 },
+  selectedIngredient: Ingredient = {
     name: "",
-    id: "",
-    photoURL: "",
-    profile: 'NONE',
-    path: "users",
+    quantity: 0,
+    minThreshold: 0,
+    maxThreshold: 0,
+    path: "ingredients"
   }
 
   resultsLength = 0;
@@ -42,8 +39,8 @@ export class UserTableComponent {
     private database: DatabaseService,
     public dialog: MatDialog,
   ) {
-    this.dataSource = new MatTableDataSource(this.userList);
-    this.fetchUsers();
+    this.dataSource = new MatTableDataSource(this.ingredientList);
+    this.fetchIngredients();
   }
 
   applyFilter(event: Event) {
@@ -55,41 +52,41 @@ export class UserTableComponent {
     }
   }
 
-  fetchUsers() {
-    this.database.readCollection<CurrentUser>("users").subscribe({
-      next: (users) => {
-        console.log("[DEBUG] - Users collection")
-        console.log(users)
-        this.userList = users;
-        this.dataSource = new MatTableDataSource(this.userList);
+  fetchIngredients() {
+    this.database.readCollection<Ingredient>("ingredients").subscribe({
+      next: (ingredients) => {
+        console.log("[DEBUG] - Ingredients collection")
+        console.log(ingredients)
+        this.ingredientList = ingredients;
+        this.dataSource = new MatTableDataSource(this.ingredientList);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }
     })
   }
 
-  openDeletionDialog(user_id: string) {
+  openDeletionDialog(ingredient_id: string) {
     const dialogRef = this.dialog.open(EntryDeletionDialogComponent)
     dialogRef.afterClosed().subscribe(
       result => {
         if (result == true) {
-          this.deleteUser(user_id)
+          this.deleteIngredient(ingredient_id)
         }
         console.log(result)
       }
     )
   }
 
-  deleteUser(user_id: string) {
-    this.database.deleteDocument("users", user_id).catch(
+  deleteIngredient(ingredient_id: string) {
+    this.database.deleteDocument("ingredients", ingredient_id).catch(
       (error) => {
         console.log(error)
       })
-    this.fetchUsers();
+    this.fetchIngredients();
   }
 
-  emitUser(user: CurrentUser) {
-    this.selectedUserEmitter.emit(user)
+  emitIngredient(ingredient: Ingredient) {
+    this.selectedIngredientEmitter.emit(ingredient)
   }
 
 }

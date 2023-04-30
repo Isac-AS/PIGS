@@ -51,6 +51,22 @@ import { UserTableComponent } from './components/0-user-related-components/user-
 import { UserDetailsComponent } from './components/0-user-related-components/user-details/user-details.component';
 import { UserModificationComponent } from './components/0-user-related-components/user-modification/user-modification.component';
 
+// Menu
+import { MenuDetailsComponent } from './components/1-0-menu-related-components/menu-details/menu-details.component';
+import { MenuModificationComponent } from './components/1-0-menu-related-components/menu-modification/menu-modification.component';
+import { MenuTableComponent } from './components/1-0-menu-related-components/menu-table/menu-table.component';
+
+// Dish
+import { DishDetailsComponent } from './components/1-1-dish-related-components/dish-details/dish-details.component';
+import { DishTableComponent } from './components/1-1-dish-related-components/dish-table/dish-table.component';
+import { DishModificationComponent } from './components/1-1-dish-related-components/dish-modification/dish-modification.component';
+
+// Ingredient
+import { IngredientTableComponent } from './components/1-2-ingredient-related-components/ingredient-table/ingredient-table.component';
+import { IngredientDetailsComponent } from './components/1-2-ingredient-related-components/ingredient-details/ingredient-details.component';
+import { IngredientModificationComponent } from './components/1-2-ingredient-related-components/ingredient-modification/ingredient-modification.component';
+
+
 //----------------------
 // Dialogs
 import { EntryDeletionDialogComponent } from './components/entry-deletion-dialog/entry-deletion-dialog.component';
@@ -75,6 +91,15 @@ import { DatabaseService } from './services/database.service';
     UserTableComponent,
     UserDetailsComponent,
     UserModificationComponent,
+    MenuDetailsComponent,
+    MenuModificationComponent,
+    MenuTableComponent,
+    DishDetailsComponent,
+    DishModificationComponent,
+    DishTableComponent,
+    IngredientDetailsComponent,
+    IngredientModificationComponent,
+    IngredientTableComponent,
 
     // Pages
     HomePageComponent,

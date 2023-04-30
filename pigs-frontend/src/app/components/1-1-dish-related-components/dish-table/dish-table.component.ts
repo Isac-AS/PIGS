@@ -4,31 +4,26 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { EntryDeletionDialogComponent } from '../../entry-deletion-dialog/entry-deletion-dialog.component';
-import { CurrentUser } from 'src/app/models/user.model';
 import { DatabaseService } from 'src/app/services/database.service';
+import { Dish } from 'src/app/models/stock.model';
 
 @Component({
-  selector: 'app-user-table',
-  templateUrl: './user-table.component.html',
-  styleUrls: ['./user-table.component.scss']
+  selector: 'app-dish-table',
+  templateUrl: './dish-table.component.html',
+  styleUrls: ['./dish-table.component.scss']
 })
-export class UserTableComponent {
+export class DishTableComponent {
 
-  @Output() selectedUserEmitter: any = new EventEmitter<any>()
+  @Output() selectedDishEmitter: any = new EventEmitter<any>()
 
-  userList: CurrentUser[] = [];
-  displayedColumns: string[] = ['selected', 'name', 'phoneNumber', 'profile', 'delete']
-  dataSource: MatTableDataSource<CurrentUser>;
+  dishList: Dish[] = [];
+  displayedColumns: string[] = ['selected', 'name', 'price', 'delete']
+  dataSource: MatTableDataSource<Dish>;
 
-  selectedUser: CurrentUser = {
-    email: "",
-    password: "",
-    contactInfo: { address: "", fullName: "", phoneNumber: 0 },
+  selectedDish: Dish = {
     name: "",
-    id: "",
-    photoURL: "",
-    profile: 'NONE',
-    path: "users",
+    ingredients: [],
+    path: "dishes"
   }
 
   resultsLength = 0;
@@ -42,8 +37,8 @@ export class UserTableComponent {
     private database: DatabaseService,
     public dialog: MatDialog,
   ) {
-    this.dataSource = new MatTableDataSource(this.userList);
-    this.fetchUsers();
+    this.dataSource = new MatTableDataSource(this.dishList);
+    this.fetchDishs();
   }
 
   applyFilter(event: Event) {
@@ -55,41 +50,41 @@ export class UserTableComponent {
     }
   }
 
-  fetchUsers() {
-    this.database.readCollection<CurrentUser>("users").subscribe({
-      next: (users) => {
-        console.log("[DEBUG] - Users collection")
-        console.log(users)
-        this.userList = users;
-        this.dataSource = new MatTableDataSource(this.userList);
+  fetchDishs() {
+    this.database.readCollection<Dish>("dishes").subscribe({
+      next: (dishs) => {
+        console.log("[DEBUG] - Dishes collection")
+        console.log(dishs)
+        this.dishList = dishs;
+        this.dataSource = new MatTableDataSource(this.dishList);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }
     })
   }
 
-  openDeletionDialog(user_id: string) {
+  openDeletionDialog(dish_id: string) {
     const dialogRef = this.dialog.open(EntryDeletionDialogComponent)
     dialogRef.afterClosed().subscribe(
       result => {
         if (result == true) {
-          this.deleteUser(user_id)
+          this.deleteDish(dish_id)
         }
         console.log(result)
       }
     )
   }
 
-  deleteUser(user_id: string) {
-    this.database.deleteDocument("users", user_id).catch(
+  deleteDish(dish_id: string) {
+    this.database.deleteDocument("dishes", dish_id).catch(
       (error) => {
         console.log(error)
       })
-    this.fetchUsers();
+    this.fetchDishs();
   }
 
-  emitUser(user: CurrentUser) {
-    this.selectedUserEmitter.emit(user)
+  emitDish(dish: Dish) {
+    this.selectedDishEmitter.emit(dish)
   }
 
 }
