@@ -33,3 +33,7 @@ This command will hopefully install @angular/material and @angular/fire:
 If vulnerability reports are found, fix them with:
 
 `npm audit fix`
+
+## If angular fire cries check these links
+https://stackoverflow.com/questions/74745954/error-angular-fire-build-incorrectly-extends-interface
+https://github.com/angular/angularfire/issues/3290#issuecomment-1323837275
