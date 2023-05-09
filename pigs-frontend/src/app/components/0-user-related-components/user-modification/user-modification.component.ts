@@ -47,7 +47,7 @@ export class UserModificationComponent {
     this.selectedUser.contactInfo.fullName = this.userForm.value.fullName!;
     this.selectedUser.contactInfo.phoneNumber = this.userForm.value.phoneNumber!;
 
-    this.db.updateDocument(this.selectedUser, "users", this.selectedUser.id)
+    this.db.updateDocument(this.selectedUser, "users", this.selectedUser.id);
     this._snackBar.open("¡User modified successfully!", "Continue", { duration: 5000 });
   }
 

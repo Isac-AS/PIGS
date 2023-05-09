@@ -14,7 +14,8 @@ export class ManageIngredientsPageComponent {
     quantity: 0,
     minThreshold: 0,
     maxThreshold: 0,
-    path: "ingredients"
+    path: "ingredients",
+    id: ""
   }
 
   constructor(

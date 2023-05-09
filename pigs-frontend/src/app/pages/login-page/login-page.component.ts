@@ -35,11 +35,11 @@ export class LoginPageComponent {
   async login() {
     const res = await this.auth.login(this.userForm.value.email!, this.userForm.value.password!).catch(error => {
       alert("Nombre de usuario o contraseña incorrectos")
-      this._snackBar.open("Error con el inicio de sesión", "Continuar", { duration: 5000 });
+      this._snackBar.open("Error during login.", "Continue", { duration: 5000 });
     });
     if (res) {
       this.auth.updateCurrentUserData();
-      this._snackBar.open("¡Inicio de sesión correcto!", "Continuar", { duration: 3000 });
+      this._snackBar.open("Logged in successfully!", "Continue", { duration: 3000 });
       this.router.navigate(['/']);
     }
   }

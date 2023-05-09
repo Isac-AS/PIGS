@@ -12,7 +12,8 @@ export class ManageDishesPageComponent {
   selectedDish: Dish = {
     name: "",
     ingredients: [],
-    path: "dishes"
+    path: "dishes",
+    id: ""
   }
 
   constructor(

@@ -2,18 +2,21 @@ export interface Order {
   dishes: Dish[],
   menus: Menu[],
   price: number,
+  id: string,
 }
 
 export interface Menu {
   name: string,
   dishes: Dish[],
   path: "menus"
+  id: string,
 }
 
 export interface Dish {
   name: string,
   ingredients: DishIngredient[],
-  path: "dishes"
+  path: "dishes",
+  id: string,
 }
 
 export interface DishIngredient {
@@ -26,5 +29,6 @@ export interface Ingredient {
   quantity: number,
   minThreshold: number,
   maxThreshold: number,
-  path: "ingredients"
+  path: "ingredients",
+  id: string,
 }

@@ -25,7 +25,8 @@ export class IngredientTableComponent {
     quantity: 0,
     minThreshold: 0,
     maxThreshold: 0,
-    path: "ingredients"
+    path: "ingredients",
+    id: ""
   }
 
   resultsLength = 0;
@@ -55,7 +56,7 @@ export class IngredientTableComponent {
   fetchIngredients() {
     this.database.readCollection<Ingredient>("ingredients").subscribe({
       next: (ingredients) => {
-        console.log("[DEBUG] - Ingredients collection")
+        console.log("[DEBUG] - [INGREDIENT TABLE COMPONENT] - Ingredients collection:")
         console.log(ingredients)
         this.ingredientList = ingredients;
         this.dataSource = new MatTableDataSource(this.ingredientList);
@@ -78,11 +79,12 @@ export class IngredientTableComponent {
   }
 
   deleteIngredient(ingredient_id: string) {
+    console.log("[DEBUG] - [INGREDIENT TABLE COMPONENT] - Attempting to delete:")
+    console.log(ingredient_id)
     this.database.deleteDocument("ingredients", ingredient_id).catch(
       (error) => {
         console.log(error)
       })
-    this.fetchIngredients();
   }
 
   emitIngredient(ingredient: Ingredient) {

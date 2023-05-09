@@ -90,11 +90,11 @@ export class RegisterPageComponent {
       const login_res = await this.auth.login(this.userForm.value.email!, this.userForm.value.password!).catch()
       if (login_res) {
         this.auth.updateCurrentUserData();
-        this._snackBar.open("¡Usuario creado con éxito!", "Continuar", { duration: 5000 });
+        this._snackBar.open("User created successfully!", "Continue", { duration: 5000 });
         this.router.navigate(['/']);
       }
     } else {
-      this._snackBar.open("Error con la creación del usuario", "Continuar", { duration: 5000 });
+      this._snackBar.open("Error during user creation", "Continue", { duration: 5000 });
     }
   }
 }

@@ -1,0 +1,30 @@
+.ingredient-form-card {
+    margin: 3em 25% 2em 25%;
+    padding-bottom: 1em;
+}
+
+.ingredient-form-content {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    gap: 1em;
+    margin-top: 2em;
+}
+
+mat-form-field {
+    width: stretch;
+}
+
+#submit-card-actions {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+
+.error-form-card {
+    margin: 3em 25% 2em 25%;
+    padding-bottom: 1em;
+    background-color: rgba(239, 113, 113, 0.525);
+}
