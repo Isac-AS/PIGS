@@ -3,6 +3,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Ingredient } from 'src/app/models/stock.model';
 import { DatabaseService } from 'src/app/services/database.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Ingredient } from 'src/app/models/stock.model';
+import { DatabaseService } from 'src/app/services/database.service';
 import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
@@ -28,7 +32,27 @@ export class AddIngredientPageComponent {
     id: ""
   }
 
+  ingredientForm = this.fb.group({
+    name: ["", Validators.required],
+    quantity: [null, Validators.required],
+    minThreshold: [null, Validators.required],
+    maxThreshold: [null, Validators.required],
+  })
+
+  ingredient: Ingredient = {
+    name: "",
+    quantity: 0,
+    maxThreshold: 0,
+    minThreshold: 0,
+    path: "ingredients",
+    id: ""
+  }
+
   constructor(
+    public globalService: GlobalService,
+    private fb: FormBuilder,
+    private db: DatabaseService,
+    private _snackBar: MatSnackBar,
     public globalService: GlobalService,
     private fb: FormBuilder,
     private db: DatabaseService,
