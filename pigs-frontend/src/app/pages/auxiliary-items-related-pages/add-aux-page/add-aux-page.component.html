@@ -1,3 +1,42 @@
-<p>
-  add-aux-page works!
-</p>
+<form [formGroup]="auxItemForm" (ngSubmit)="submit()">
+  <mat-card class="auxItem-form-card">
+    <mat-card-header>
+      <mat-card-title>
+        Aux item stock information
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="auxItem-form-content">
+      <!-- Aux item name -->
+      <mat-form-field>
+        <input matInput placeholder="Name" formControlName="name">
+        <mat-error *ngIf="auxItemForm.controls['name'].hasError('required')">
+          A name is <strong>required</strong>.
+        </mat-error>
+      </mat-form-field>
+      <!-- Quantity -->
+      <mat-form-field>
+        <input matInput placeholder="Quantity" formControlName="quantity">
+        <mat-error *ngIf="auxItemForm.controls['quantity'].hasError('required')">
+          Quantity is <strong>required</strong>.
+        </mat-error>
+      </mat-form-field>
+      <!-- Min threshold -->
+      <mat-form-field>
+        <input matInput placeholder="Min Threshold" formControlName="minThreshold">
+        <mat-error *ngIf="auxItemForm.controls['minThreshold'].hasError('required')">
+          A min threshold is <strong>required</strong>.
+        </mat-error>
+      </mat-form-field>
+      <!-- Max threshold -->
+      <mat-form-field>
+        <input matInput placeholder="Max Threshold" formControlName="maxThreshold">
+        <mat-error *ngIf="auxItemForm.controls['maxThreshold'].hasError('required')">
+          A max threshold is <strong>required</strong>.
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions id="submit-card-actions">
+      <button mat-raised-button color="accent" type="submit" [disabled]="!auxItemForm.valid">Add Aux Item</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

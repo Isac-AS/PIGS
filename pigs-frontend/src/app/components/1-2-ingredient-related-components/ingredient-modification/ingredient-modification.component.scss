@@ -1,28 +1,16 @@
-@use '@angular/material' as mat;
-
-#register-banner {
-    justify-self: center;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: space-around;
-    text-align: center;
-    margin: 3em 25% 1em 25%;
-    padding-bottom: 1em;
-}
-
-.user-form-card {
+.ingredient-form-card {
     margin: 3em 25% 2em 25%;
     padding-bottom: 1em;
 }
 
-.user-form-content {
+.ingredient-form-content {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: space-around;
     text-align: center;
     gap: 1em;
+    margin-top: 2em;
 }
 
 mat-form-field {

@@ -1,3 +1,16 @@
-<p>
-  manage-aux-page works!
-</p>
+<mat-tab-group>
+  <!--AuxItem table tab-->
+  <mat-tab label="AuxItem Table">
+    <app-aux-Item-table (selectedAuxItemEmitter)="updateSelectedAuxItem($event)"></app-aux-Item-table>
+  </mat-tab>
+
+  <!--AuxItem Info tab-->
+  <mat-tab label="Detailed AuxItem Information">
+    <app-aux-Item-details [selectedAuxItem]="selectedAuxItem"></app-aux-Item-details>
+  </mat-tab>
+
+  <!--AuxItem edition tab-->
+  <mat-tab label="Modify AuxItem">
+    <app-aux-Item-modification [selectedAuxItem]="selectedAuxItem"></app-aux-Item-modification>
+  </mat-tab>
+</mat-tab-group>

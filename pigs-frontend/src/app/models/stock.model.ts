@@ -32,3 +32,12 @@ export interface Ingredient {
   path: "ingredients",
   id: string,
 }
+
+export interface AuxItem {
+  name: string,
+  quantity: number,
+  minThreshold: number,
+  maxThreshold: number,
+  path: "auxItems",
+  id: string,
+}

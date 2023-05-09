@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Ingredient } from 'src/app/models/stock.model';
@@ -51,6 +51,7 @@ export class AddIngredientPageComponent {
       this._snackBar.open("Ingredient added successfully!", "Continue", { duration: 5000 });
       this.clearForm();
     }).catch(error => {
+      console.log(error)
       this._snackBar.open("Error during ingredient addition, try later.", "Continue", { duration: 5000 });
     })
   }

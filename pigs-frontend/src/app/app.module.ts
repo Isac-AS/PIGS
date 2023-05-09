@@ -38,6 +38,18 @@ import { ManageAuxPageComponent } from './pages/auxiliary-items-related-pages/ma
 import { AddProviderPageComponent } from './pages/provider-related-pages/add-provider-page/add-provider-page.component';
 import { ManageProvidersPageComponent } from './pages/provider-related-pages/manage-providers-page/manage-providers-page.component';
 
+//----------------------
+// Dialogs
+import { EntryDeletionDialogComponent } from './components/entry-deletion-dialog/entry-deletion-dialog.component';
+
+// Services
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AuthService } from './services/auth.service';
+import { DatabaseService } from './services/database.service';
 
 //----------------------
 // Components
@@ -66,19 +78,12 @@ import { IngredientTableComponent } from './components/1-2-ingredient-related-co
 import { IngredientDetailsComponent } from './components/1-2-ingredient-related-components/ingredient-details/ingredient-details.component';
 import { IngredientModificationComponent } from './components/1-2-ingredient-related-components/ingredient-modification/ingredient-modification.component';
 
+// Aux Items
+import { AuxItemTableComponent } from './components/1-3-aux-Items-related-components/aux-Items-table/aux-Items-table.component';
+import { AuxItemModificationComponent } from './components/1-3-aux-Items-related-components/aux-Items-modification/aux-Items-modification.component';
+import { AuxItemDetailsComponent } from './components/1-3-aux-Items-related-components/aux-Items-details/aux-Items-details.component';
 
-//----------------------
-// Dialogs
-import { EntryDeletionDialogComponent } from './components/entry-deletion-dialog/entry-deletion-dialog.component';
 
-// Services
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
-import { provideAuth, getAuth } from '@angular/fire/auth';
-import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AuthService } from './services/auth.service';
-import { DatabaseService } from './services/database.service';
 
 
 @NgModule({
@@ -100,6 +105,9 @@ import { DatabaseService } from './services/database.service';
     IngredientDetailsComponent,
     IngredientModificationComponent,
     IngredientTableComponent,
+    AuxItemTableComponent,
+    AuxItemModificationComponent,
+    AuxItemDetailsComponent,
 
     // Pages
     HomePageComponent,
