@@ -12,7 +12,8 @@ export class ManageMenuPageComponent {
   selectedMenu: Menu = {
     name: "",
     dishes: [],
-    path: "menus"
+    path: "menus",
+    id: ""
   }
 
   constructor(

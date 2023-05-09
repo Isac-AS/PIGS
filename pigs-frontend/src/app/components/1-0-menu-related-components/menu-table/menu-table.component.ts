@@ -23,7 +23,8 @@ export class MenuTableComponent {
   selectedMenu: Menu = {
     name: "",
     dishes: [],
-    path: "menus"
+    path: "menus",
+    id: ""
   }
 
   resultsLength = 0;

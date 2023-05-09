@@ -23,7 +23,8 @@ export class DishTableComponent {
   selectedDish: Dish = {
     name: "",
     ingredients: [],
-    path: "dishes"
+    path: "dishes",
+    id: ""
   }
 
   resultsLength = 0;
