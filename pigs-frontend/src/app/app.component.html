@@ -1,66 +1,104 @@
 <app-header></app-header>
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-        <mat-toolbar>Menu</mat-toolbar>
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item routerLink="/home">
+        <span id="home-page-list-item">Inicio</span>
+      </mat-list-item>
+      <!--Orders-->
+      <mat-expansion-panel
+        [class.mat-elevation-z0]="true"
+        *ngIf="
+          currentLoggedProfile == 'OWNER' ||
+          currentLoggedProfile == 'MANAGER' ||
+          currentLoggedProfile == 'EMPLOYEE'
+        "
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon style="padding-right: 0.2em"
+              ><span class="material-symbols-outlined">
+                edit_note
+              </span></mat-icon
+            >
+            Orders
+          </mat-panel-title>
+        </mat-expansion-panel-header>
         <mat-nav-list>
-            <mat-list-item routerLink="/home">
-                <span id="home-page-list-item">Página principal</span>
-            </mat-list-item>
-            <!--Orders-->
-            <mat-expansion-panel [class.mat-elevation-z0]="true"
-                *ngIf="currentLoggedProfile == 'OWNER' || currentLoggedProfile == 'MANAGER' || currentLoggedProfile == 'EMPLOYEE'">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Orders
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <mat-nav-list>
-                    <a mat-list-item routerLink="/add_order">New Order</a>
-                    <a mat-list-item routerLink="/pending_orders">Pending Orders</a>
-                </mat-nav-list>
-            </mat-expansion-panel>
-            <!--CRUD ENTRIES-->
-            <div *ngFor="let entry of CRUD_ARRAY">
-                <mat-expansion-panel [class.mat-elevation-z0]="true"
-                    *ngIf="currentLoggedProfile == 'OWNER' || currentLoggedProfile == 'MANAGER'">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            {{ entry.title }}
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <mat-nav-list>
-                        <div *ngFor="let route of entry.routes">
-                            <a mat-list-item [routerLink]="route.route">{{route.name}}</a>
-                        </div>
-                    </mat-nav-list>
-                </mat-expansion-panel>
-            </div>
-            <!--Users/Employees-->
-            <mat-expansion-panel [class.mat-elevation-z0]="true" *ngIf="currentLoggedProfile == 'OWNER'">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Employees
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <mat-nav-list>
-                    <a mat-list-item routerLink="/user_management">View employees</a>
-                    <a mat-list-item routerLink="/">Statistics</a>
-                </mat-nav-list>
-            </mat-expansion-panel>
+          <a mat-list-item routerLink="/add_order">
+            <mat-icon matListItemIcon
+              ><span class="material-symbols-outlined"> add </span></mat-icon
+            >
+            New Order
+          </a>
+          <a mat-list-item routerLink="/pending_orders">
+            <mat-icon matListItemIcon>
+              <span class="material-symbols-outlined">
+                pending_actions
+              </span></mat-icon
+            >
+            <div matListItemTitle>Pending Orders</div></a
+          >
         </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <mat-toolbar color="primary" [class.mat-elevation-z8]="true">
-            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-                *ngIf="isHandset$ | async">
-                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-            </button>
-            <span class="current-page-name">{{currentPageName}}</span>
-        </mat-toolbar>
-        <div style="padding: 0 1.5em;">
-            <router-outlet></router-outlet>
-        </div>
-    </mat-sidenav-content>
+      </mat-expansion-panel>
+      <!--CRUD ENTRIES-->
+      <div *ngFor="let entry of CRUD_ARRAY">
+        <mat-expansion-panel
+          [class.mat-elevation-z0]="true"
+          *ngIf="
+            currentLoggedProfile == 'OWNER' || currentLoggedProfile == 'MANAGER'
+          "
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ entry.title }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list>
+            <div *ngFor="let route of entry.routes">
+              <a mat-list-item [routerLink]="route.route">{{ route.name }}</a>
+            </div>
+          </mat-nav-list>
+        </mat-expansion-panel>
+      </div>
+      <!--Users/Employees-->
+      <mat-expansion-panel
+        [class.mat-elevation-z0]="true"
+        *ngIf="currentLoggedProfile == 'OWNER'"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title> Employees </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <a mat-list-item routerLink="/user_management">View employees</a>
+          <a mat-list-item routerLink="/">Statistics</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" [class.mat-elevation-z8]="true">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span class="current-page-name">{{ currentPageName }}</span>
+    </mat-toolbar>
+    <div style="padding: 0 1.5em">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
 </mat-sidenav-container>
 <app-footer></app-footer>

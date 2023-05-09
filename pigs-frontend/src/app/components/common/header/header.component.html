@@ -1,25 +1,47 @@
-<header>
-  <nav class="header-navbar"
+<header class="header-container">
+  <nav
+    class="header-navbar"
     [ngClass]="{
       'header-and-footer-dark-mode-background-color': isDarkThemeActive,
-      'header-and-footer-light-mode-background-color': !isDarkThemeActive}">
-    <a mat-raised-button color="accent" class="header-title" routerLink="/">
-      <span>StockSync</span>
+      'header-light-mode-background-color': !isDarkThemeActive
+    }"
+  >
+    <a routerLink="/">
+      <img
+        class="header-logo"
+        src="../../../../assets/logo/main_logo.png"
+        alt="logo"
+      />
     </a>
     <div id="header-button-container" class="header-hide-small">
       <app-theme-picker></app-theme-picker>
-      <a mat-raised-button color="accent" routerLink="/login" *ngIf="!loggedInCondition">
+      <a
+        mat-raised-button
+        color="accent"
+        routerLink="/login"
+        *ngIf="!loggedInCondition"
+      >
         <mat-icon>login</mat-icon>
         Iniciar sesión
       </a>
-      <a mat-raised-button color="accent" routerLink="/register" *ngIf="!loggedInCondition">
+      <a
+        mat-raised-button
+        color="accent"
+        routerLink="/register"
+        *ngIf="!loggedInCondition"
+      >
         <mat-icon>person_add</mat-icon>
         Registrarse
       </a>
       <a mat-stroked-button color="accent" *ngIf="loggedInCondition">
-        {{currentUserName}}
+        {{ currentUserName }}
       </a>
-      <button mat-raised-button color="accent" (click)="logOut()" *ngIf="loggedInCondition">
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="logOut()"
+        *ngIf="loggedInCondition"
+      >
         <mat-icon>logout</mat-icon>
         Cerrar sesión
       </button>
@@ -27,18 +49,33 @@
     <app-theme-picker class="header-show-small"></app-theme-picker>
   </nav>
   <nav class="header-small-navbar" [class.mat-elevation-z8]="true">
-    <a mat-raised-button color="accent" routerLink="/login" *ngIf="!loggedInCondition">
+    <a
+      mat-raised-button
+      color="accent"
+      routerLink="/login"
+      *ngIf="!loggedInCondition"
+    >
       <mat-icon>login</mat-icon>
       Iniciar sesión
     </a>
-    <a mat-raised-button color="accent" routerLink="/register" *ngIf="!loggedInCondition">
+    <a
+      mat-raised-button
+      color="accent"
+      routerLink="/register"
+      *ngIf="!loggedInCondition"
+    >
       <mat-icon>person_add</mat-icon>
       Registrarse
     </a>
     <a mat-stroked-button color="accent" *ngIf="loggedInCondition">
-      {{currentUserName}}
+      {{ currentUserName }}
     </a>
-    <button mat-raised-button color="accent" (click)="logOut()" *ngIf="loggedInCondition">
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="logOut()"
+      *ngIf="loggedInCondition"
+    >
       <mat-icon>logout</mat-icon>
       Cerrar sesión
     </button>
