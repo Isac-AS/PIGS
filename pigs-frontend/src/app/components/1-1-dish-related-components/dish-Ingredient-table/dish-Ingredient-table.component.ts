@@ -1,10 +1,9 @@
-import { Component, EventEmitter, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { EntryDeletionDialogComponent } from '../../entry-deletion-dialog/entry-deletion-dialog.component';
-import { DatabaseService } from 'src/app/services/database.service';
 import { DishIngredient, Ingredient } from 'src/app/models/stock.model';
 
 @Component({
@@ -15,10 +14,10 @@ import { DishIngredient, Ingredient } from 'src/app/models/stock.model';
 export class DishIngredientTableComponent implements OnChanges {
 
 
+  @Input() dishIngredientList: DishIngredient[] = [];
   @Output() selectedDishIngredientEmitter: any = new EventEmitter<any>()
   @Output() deleteDishIngredientEmitter: any = new EventEmitter<any>()
 
-  dishIngredientList: DishIngredient[] = [];
   displayedColumns: string[] = ['selected', 'name', 'amount', 'delete']
   dataSource: MatTableDataSource<DishIngredient>;
 
@@ -52,8 +51,10 @@ export class DishIngredientTableComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.dishIngredientList = changes['dishIngredientList'].currentValue;
     this.dataSource = new MatTableDataSource(this.dishIngredientList);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    if (this.dishIngredientList.length > 0){
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    } 
   }
 
   applyFilter(event: Event) {

@@ -1,0 +1,20 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      {{ selectedDishIngredient.ingredient.name }}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="amountForm" (ngSubmit)="emitCurrentDishIngredient()" class="amount-setting">
+      <mat-form-field>
+        <mat-label>Set amount</mat-label>
+        <input matInput formControlName="amount" type="number">
+        <mat-error *ngIf="amountForm.controls['amount'].hasError('required')">
+          An amount is <strong>required</strong>.
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit"
+        [disabled]="!amountForm.valid || amountForm.value.amount! <= 0">Save changes</button>
+    </form>
+  </mat-card-content>
+</mat-card>

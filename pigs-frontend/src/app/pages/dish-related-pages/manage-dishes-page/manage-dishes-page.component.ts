@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Dish } from 'src/app/models/stock.model';
+import { DatabaseService } from 'src/app/services/database.service';
 import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
@@ -17,14 +19,26 @@ export class ManageDishesPageComponent {
   }
 
   constructor(
-    public globalService: GlobalService
+    public globalService: GlobalService,
+    private db: DatabaseService,
+    private _snackBar: MatSnackBar,
   ) {
     this.globalService.pageName.next({
       currentPageName: 'Manage Dishes'
     })
   }
 
-  updateSelectedDish(user: Dish) {
-    this.selectedDish = user;
+  updateSelectedDish(dish: Dish) {
+    this.selectedDish = dish;
+  }
+
+  updateDish() {
+    let promise = this.db.updateDocument(this.selectedDish, this.selectedDish.path, this.selectedDish.id);
+    promise.then((_) => {
+      this._snackBar.open("Dish updated successfully!", "Continue", { duration: 5000 });
+    }).catch(error => {
+      console.log(error)
+      this._snackBar.open("Error during dish updating process, try later.", "Continue", { duration: 5000 });
+    })
   }
 }

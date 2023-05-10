@@ -11,7 +11,7 @@
         <!-- Selected Column -->
         <ng-container matColumnDef="selected">
           <th mat-header-cell *matHeaderCellDef>
-            Selected User:<br /><b>{{ selectedIngredient.name }}</b>
+            Selected Ingredient:<br /><b>{{ selectedIngredient.name }}</b>
           </th>
           <td mat-cell *matCellDef="let element">
             <mat-radio-button [value]="element" (click)="emitIngredient(element)"></mat-radio-button>

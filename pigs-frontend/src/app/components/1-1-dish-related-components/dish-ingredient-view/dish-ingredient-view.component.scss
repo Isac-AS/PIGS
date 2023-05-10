@@ -1,0 +1,13 @@
+.card-content {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.amount-setting {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-around;
+    width: 70%;
+}

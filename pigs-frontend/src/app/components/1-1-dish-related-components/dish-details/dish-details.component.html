@@ -10,6 +10,14 @@
         <span matListItemTitle>Name</span>
         <span matListItemLine>{{selectedDish.name}}</span>
       </mat-list-item>
+      <mat-list-item style="margin-top: 2em;">
+        <span matListItemTitle>Ingredients</span>
+        <div *ngFor="let ingredient of selectedDish.ingredients; let last = last ">
+          <span matListItemLine>Name: {{ingredient.ingredient.name}}</span>
+          <span matListItemLine>Amount: {{ingredient.amount}}</span>
+          <mat-divider *ngIf="!last" style="margin-top: 2em; margin-bottom: 2em;"></mat-divider>
+        </div>
+      </mat-list-item>
     </mat-list>
   </mat-card-content>
 </mat-card>

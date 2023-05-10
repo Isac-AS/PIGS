@@ -2,10 +2,10 @@
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #drawer class="sidenav" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-        <mat-toolbar>Menu</mat-toolbar>
+        <mat-toolbar>Navigator</mat-toolbar>
         <mat-nav-list>
             <mat-list-item routerLink="/home">
-                <span id="home-page-list-item">Página principal</span>
+                <span id="home-page-list-item">Home Page</span>
             </mat-list-item>
             <!--Orders-->
             <mat-expansion-panel [class.mat-elevation-z0]="true"

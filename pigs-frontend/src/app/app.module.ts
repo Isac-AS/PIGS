@@ -73,6 +73,7 @@ import { DishDetailsComponent } from './components/1-1-dish-related-components/d
 import { DishTableComponent } from './components/1-1-dish-related-components/dish-table/dish-table.component';
 import { DishModificationComponent } from './components/1-1-dish-related-components/dish-modification/dish-modification.component';
 import { DishIngredientTableComponent } from './components/1-1-dish-related-components/dish-Ingredient-table/dish-Ingredient-table.component';
+import { DishIngredientViewComponent } from './components/1-1-dish-related-components/dish-ingredient-view/dish-ingredient-view.component';
 
 // Ingredient
 import { IngredientTableComponent } from './components/1-2-ingredient-related-components/ingredient-table/ingredient-table.component';
@@ -109,6 +110,7 @@ import { AuxItemDetailsComponent } from './components/1-3-aux-Items-related-comp
     AuxItemModificationComponent,
     AuxItemDetailsComponent,
     DishIngredientTableComponent,
+    DishIngredientViewComponent,
 
     // Pages
     HomePageComponent,

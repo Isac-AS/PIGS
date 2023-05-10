@@ -1,14 +1,5 @@
-@use '@angular/material' as mat;
-
-#register-banner {
-    justify-self: center;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: space-around;
-    text-align: center;
-    margin: 3em 25% 1em 25%;
-    padding-bottom: 1em;
+mat-card {
+    margin: 2em 0 2em 0;
 }
 
 .user-form-card {

@@ -11,6 +11,11 @@
 
   <!--Dish edition tab-->
   <mat-tab label="Modify Dish">
-    <app-dish-modification [selectedDish]="selectedDish"></app-dish-modification>
+    <app-dish-modification [selectedDish]="selectedDish"
+      (selectedDishEmitter)="updateSelectedDish($event)"></app-dish-modification>
+    <button class="add-dish-button" mat-raised-button color="accent" (click)="updateDish()"
+      [disabled]="selectedDish.name == '' || selectedDish.ingredients.length <= 0">
+      Update Dish
+    </button>
   </mat-tab>
 </mat-tab-group>
