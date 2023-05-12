@@ -67,6 +67,7 @@ import { UserModificationComponent } from './components/0-user-related-component
 import { MenuDetailsComponent } from './components/1-0-menu-related-components/menu-details/menu-details.component';
 import { MenuModificationComponent } from './components/1-0-menu-related-components/menu-modification/menu-modification.component';
 import { MenuTableComponent } from './components/1-0-menu-related-components/menu-table/menu-table.component';
+import { MenuDishListComponent } from './components/1-0-menu-related-components/menu-dish-list/menu-dish-list.component';
 
 // Dish
 import { DishDetailsComponent } from './components/1-1-dish-related-components/dish-details/dish-details.component';
@@ -111,6 +112,7 @@ import { AuxItemDetailsComponent } from './components/1-3-aux-Items-related-comp
     AuxItemDetailsComponent,
     DishIngredientTableComponent,
     DishIngredientViewComponent,
+    MenuDishListComponent,
 
     // Pages
     HomePageComponent,
