@@ -1,12 +1,10 @@
 <mat-card id="register-banner" color="primary" [class.mat-elevation-z8]="true">
   <mat-card-header>
-    <mat-card-title>
-      Inicio de sesión
-    </mat-card-title>
+    <mat-card-title> Login </mat-card-title>
   </mat-card-header>
   <mat-card-actions>
     <a mat-raised-button color="accent" routerLink="/register">
-      <span>¿No tienes una cuenta? Regístrate</span>
+      <span>Need an account? Sign up</span>
       <mat-icon>person_add</mat-icon>
     </a>
   </mat-card-actions>
@@ -15,44 +13,50 @@
 <form [formGroup]="userForm" (ngSubmit)="login()">
   <mat-card class="user-form-card">
     <mat-card-header>
-      <mat-card-title>
-        Información de usuario
-      </mat-card-title>
+      <mat-card-title> User information </mat-card-title>
     </mat-card-header>
     <mat-card-content class="user-form-content">
       <!-- email -->
       <mat-form-field>
-        <input matInput placeholder="Correo electrónico" formControlName="email">
+        <input matInput placeholder="Email" formControlName="email" />
         <mat-error *ngIf="userForm.controls['email'].hasError('required')">
-          El correo electrónico es <strong>obligatorio</strong>
+          Email <strong>required</strong>
         </mat-error>
         <mat-error *ngIf="userForm.controls['email'].hasError('email')">
-          Introduzca un correo electrónico correcto
+          Email invalid
         </mat-error>
       </mat-form-field>
       <!-- password -->
       <mat-form-field>
-        <input matInput type="password" placeholder="Contraseña" formControlName="password">
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+        />
         <mat-error *ngIf="userForm.controls['password'].hasError('required')">
-          La contraseña es <strong>obligatoria</strong>
+          Password <strong>required</strong>
         </mat-error>
         <mat-error *ngIf="userForm.controls['password'].hasError('minlength')">
-          La contraseña debe tener más de 6 caracteres
+          The password should have over 6 characters.
         </mat-error>
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions id="submit-card-actions">
-      <button mat-raised-button color="accent" type="submit" [disabled]="!userForm.valid">Iniciar sesión</button>
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        [disabled]="!userForm.valid"
+      >
+        Login
+      </button>
     </mat-card-actions>
   </mat-card>
   <mat-card class="error-form-card" *ngIf="invalidAnswerFromBackend">
     <mat-card-header>
-      <mat-card-title>
-        Se han encontrado los siguientes errores:
-      </mat-card-title>
+      <mat-card-title> The following errors have been found: </mat-card-title>
     </mat-card-header>
-    <mat-card-content>
-      1 - Correo o contraseña erróneos
-    </mat-card-content>
+    <mat-card-content> 1 - Email or password invalid </mat-card-content>
   </mat-card>
 </form>

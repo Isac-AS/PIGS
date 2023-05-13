@@ -22,7 +22,7 @@
         *ngIf="!loggedInCondition"
       >
         <mat-icon>login</mat-icon>
-        Iniciar sesión
+        Login
       </a>
       <a
         mat-raised-button
@@ -31,7 +31,7 @@
         *ngIf="!loggedInCondition"
       >
         <mat-icon>person_add</mat-icon>
-        Registrarse
+        Sign up
       </a>
       <a mat-stroked-button color="accent" *ngIf="loggedInCondition">
         {{ currentUserName }}
@@ -43,7 +43,7 @@
         *ngIf="loggedInCondition"
       >
         <mat-icon>logout</mat-icon>
-        Cerrar sesión
+        Logout
       </button>
     </div>
     <app-theme-picker class="header-show-small"></app-theme-picker>
@@ -56,7 +56,7 @@
       *ngIf="!loggedInCondition"
     >
       <mat-icon>login</mat-icon>
-      Iniciar sesión
+      Login
     </a>
     <a
       mat-raised-button
@@ -65,7 +65,7 @@
       *ngIf="!loggedInCondition"
     >
       <mat-icon>person_add</mat-icon>
-      Registrarse
+      Sign up
     </a>
     <a mat-stroked-button color="accent" *ngIf="loggedInCondition">
       {{ currentUserName }}
