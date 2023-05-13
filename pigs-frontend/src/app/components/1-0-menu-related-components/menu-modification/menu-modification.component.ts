@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { GlobalService } from 'src/app/services/global.service';
-import { DatabaseService } from 'src/app/services/database.service';
 import { Dish, Menu } from 'src/app/models/stock.model';
 
 @Component({
@@ -21,7 +19,6 @@ export class MenuModificationComponent {
 
   constructor(
     private fb: FormBuilder,
-    private db: DatabaseService,
     public globalService: GlobalService,
   ) { }
 
@@ -35,7 +32,6 @@ export class MenuModificationComponent {
     })
   }
 
-  
   addDishToMenu(newDish: Dish) {
     this.selectedMenu.dishes.push(newDish);
     this.emitSelectedMenu();
@@ -54,7 +50,4 @@ export class MenuModificationComponent {
   emitSelectedMenu() {
     this.selectedMenuEmitter.emit(this.selectedMenu)
   }
-
-
-  
 }

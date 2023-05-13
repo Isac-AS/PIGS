@@ -87,8 +87,9 @@ import { AuxItemModificationComponent } from './components/1-3-aux-Items-related
 import { AuxItemDetailsComponent } from './components/1-3-aux-Items-related-components/aux-Items-details/aux-Items-details.component';
 
 // Provider
-import { ElementListComponent } from './components/2-0-provider-related-components/element-list/element-list.component';
 import { ProviderModificationComponent } from './components/2-0-provider-related-components/provider-modification/provider-modification.component';
+import { ProviderTableComponent } from './components/2-0-provider-related-components/provider-table/provider-table.component';
+import { ProviderDetailsComponent } from './components/2-0-provider-related-components/provider-details/provider-details.component';
 
 
 
@@ -117,8 +118,9 @@ import { ProviderModificationComponent } from './components/2-0-provider-related
     DishIngredientTableComponent,
     DishIngredientViewComponent,
     MenuDishListComponent,
-    ElementListComponent,
     ProviderModificationComponent,
+    ProviderTableComponent,
+    ProviderDetailsComponent,
 
     // Pages
     HomePageComponent,

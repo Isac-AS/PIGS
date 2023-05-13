@@ -1,3 +1,17 @@
-<p>
-  manage-providers-page works!
-</p>
+<mat-tab-group>
+  <!--Provider table tab-->
+  <mat-tab label="Provider Table">
+    <app-provider-table (selectedProviderEmitter)="updateSelectedProvider($event)"></app-provider-table>
+  </mat-tab>
+
+  <!--Provider Info tab-->
+  <mat-tab label="Detailed Provider Information">
+    <app-provider-details [selectedProvider]="selectedProvider"></app-provider-details>
+  </mat-tab>
+
+  <!--Provider edition tab-->
+  <mat-tab label="Modify Provider">
+    <app-provider-modification [selectedProvider]="selectedProvider"
+      (selectedProviderEmitter)="updateSelectedProvider($event)"></app-provider-modification>
+  </mat-tab>
+</mat-tab-group>

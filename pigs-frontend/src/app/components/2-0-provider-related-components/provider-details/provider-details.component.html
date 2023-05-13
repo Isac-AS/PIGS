@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Provider Information
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>
+        <span matListItemTitle>Name</span>
+        <span matListItemLine>{{ selectedProvider.name }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span matListItemTitle>Address</span>
+        <span matListItemLine>{{ selectedProvider.contactInfo.address }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span matListItemTitle>Phone Number</span>
+        <span matListItemLine>{{ selectedProvider.contactInfo.phoneNumber }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span matListItemTitle>Full Name</span>
+        <span matListItemLine>{{ selectedProvider.contactInfo.fullName }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span matListItemTitle>Items provided</span>
+        <div *ngFor="let item of selectedProvider.items">
+          <span matListItemLine>{{item.name}}</span>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

@@ -2,5 +2,8 @@ import { ContactInfo } from "./user.model";
 
 export interface Provider {
     name: string,
-    contactInfo: ContactInfo
+    contactInfo: ContactInfo,
+    items: any[],
+    path: "providers",
+    id: string
 }

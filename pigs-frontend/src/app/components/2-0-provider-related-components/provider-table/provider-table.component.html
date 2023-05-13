@@ -1,20 +1,20 @@
-<div id="user-table-component-wrapper">
+<div id="provider-table-component-wrapper">
   <mat-form-field>
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="E.g. Pepe" #input>
   </mat-form-field>
 
   <div class="mat-elevation-z8" id="table-wrapper">
-    <mat-radio-group [(ngModel)]="selectedMenu">
+    <mat-radio-group [(ngModel)]="selectedProvider">
       <table mat-table [dataSource]="dataSource" [hidden]="!dataSource.data" matSort>
 
         <!-- Selected Column -->
         <ng-container matColumnDef="selected">
           <th mat-header-cell *matHeaderCellDef>
-            Selected Menu:<br /><b>{{ selectedMenu.name }}</b>
+            Selected Provider:<br /><b>{{ selectedProvider.name }}</b>
           </th>
           <td mat-cell *matCellDef="let element">
-            <mat-radio-button [value]="element" (click)="emitMenu(element)"></mat-radio-button>
+            <mat-radio-button [value]="element" (click)="emitProvider(element)"></mat-radio-button>
           </td>
         </ng-container>
 
@@ -24,15 +24,21 @@
           <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
         </ng-container>
 
-        <!-- Price Column -->
-        <ng-container matColumnDef="price">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
-          <td mat-cell *matCellDef="let row"> {{row.price}} </td>
+        <!-- Address Column -->
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+          <td mat-cell *matCellDef="let row"> {{row.contactInfo.address}} </td>
+        </ng-container>
+
+        <!-- Phone Number Column -->
+        <ng-container matColumnDef="phoneNumber">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone Number </th>
+          <td mat-cell *matCellDef="let row"> {{row.contactInfo.phoneNumber}} </td>
         </ng-container>
 
         <!-- Delete Column -->
         <ng-container matColumnDef="delete">
-          <th mat-header-cell *matHeaderCellDef> Delete Menu </th>
+          <th mat-header-cell *matHeaderCellDef> Delete Provider </th>
           <td mat-cell *matCellDef="let element">
             <button mat-mini-fab color="warn" [value]="element" (click)="openDeletionDialog(element.id)">
               <mat-icon>delete</mat-icon>
@@ -51,6 +57,6 @@
     </mat-radio-group>
 
     <mat-divider></mat-divider>
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of menus"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of providers"></mat-paginator>
   </div>
 </div>

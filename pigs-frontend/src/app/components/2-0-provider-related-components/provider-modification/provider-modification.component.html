@@ -1,3 +1,63 @@
-<p>
-  provider-modification works!
-</p>
+<form [formGroup]="providerForm" (ngSubmit)="emitSelectedProvider()">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        Provider
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content style="margin-top: 3em;">
+      <!-- Name -->
+      <mat-form-field>
+        <mat-label>Short name</mat-label>
+        <input matInput formControlName="name" type="text">
+        <mat-error *ngIf="providerForm.controls['name'].hasError('required')">
+          A name is <strong>required</strong>.
+        </mat-error>
+      </mat-form-field>
+      <!-- Full name -->
+      <mat-form-field>
+        <mat-label>Full name</mat-label>
+        <input matInput formControlName="fullName" type="text">
+        <mat-error *ngIf="providerForm.controls['fullName'].hasError('required')">
+          A full name is <strong>required</strong>.
+        </mat-error>
+      </mat-form-field>
+      <!-- Phone number -->
+      <mat-form-field>
+        <mat-label>Phone number</mat-label>
+        <input matInput formControlName="phoneNumber">
+        <mat-error *ngIf="providerForm.controls['phoneNumber'].hasError('required')">
+          A phone number is <strong>required</strong>.
+        </mat-error>
+      </mat-form-field>
+      <!-- Address -->
+      <mat-form-field>
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="address" type="text">
+        <mat-error *ngIf="providerForm.controls['address'].hasError('required')">
+          An address is <strong>required</strong>.
+        </mat-error>
+      </mat-form-field>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            Items Provided
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="items-card-content">
+          <div *ngFor="let item of selectedProvider.items">
+            <div class="listed-item">
+              <span>{{item.name}}</span>
+              <button mat-mini-fab color="warn" (click)="removeItem(item)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <app-ingredient-table (selectedIngredientEmitter)="addItem($event)"></app-ingredient-table>
+      <app-aux-Item-table (selectedAuxItemEmitter)="addItem($event)"></app-aux-Item-table>
+    </mat-card-content>
+  </mat-card>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!providerForm.valid">Save</button>
+</form>
