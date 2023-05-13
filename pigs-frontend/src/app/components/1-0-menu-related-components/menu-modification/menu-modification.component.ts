@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/
 import { FormBuilder, Validators } from '@angular/forms';
 import { GlobalService } from 'src/app/services/global.service';
 import { Dish, Menu } from 'src/app/models/stock.model';
+import { DatabaseService } from 'src/app/services/database.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-menu-modification',
@@ -10,15 +12,19 @@ import { Dish, Menu } from 'src/app/models/stock.model';
 })
 export class MenuModificationComponent {
 
+  private suggested_amount: number = 0;
   @Input() selectedMenu!: Menu;
   @Output() selectedMenuEmitter: any = new EventEmitter<any>();
 
   nameForm = this.fb.group({
     name: ["", Validators.required],
+    price: [this.suggested_amount, [ Validators.required, Validators.min(0)]]
   })
 
   constructor(
     private fb: FormBuilder,
+    private db: DatabaseService,
+    private _snackBar: MatSnackBar,
     public globalService: GlobalService,
   ) { }
 
@@ -28,22 +34,43 @@ export class MenuModificationComponent {
     let updatedMenu: Menu = changes['selectedMenu'].currentValue;
     this.selectedMenu = updatedMenu;
     this.nameForm.setValue({
-      name: updatedMenu.name
+      name: updatedMenu.name,
+      price: updatedMenu.price
     })
   }
 
   addDishToMenu(newDish: Dish) {
     this.selectedMenu.dishes.push(newDish);
+    this.suggested_amount += parseFloat(newDish.price.toFixed(2));
+    this.updatePrice();
     this.emitSelectedMenu();
   }
 
-  updateName() {
+  updatePrice(){
+    let fixed_amount = this.suggested_amount * 0.9;
+    this.nameForm.setValue({
+      name: this.selectedMenu.name,
+      price: parseFloat(fixed_amount.toFixed(2)) 
+    })
+  }
+
+  update() {
     this.selectedMenu.name = this.nameForm.value.name!;
+    this.selectedMenu.price = this.nameForm.value.price!;
+    this._snackBar.open("Saved!", "Continue", { duration: 5000 });
     this.emitSelectedMenu();
   }
 
   removeDishFromMenu(dishToRemove: Dish) {
-    this.selectedMenu.dishes = this.selectedMenu.dishes.filter(dish => dish.id != dishToRemove.id);
+    const index = this.selectedMenu.dishes.findIndex(dish => dish.id === dishToRemove.id);
+    if (index !== -1) {
+      this.selectedMenu.dishes.splice(index, 1)[0];
+      this._snackBar.open("Deleted!", "Continue", { duration: 2000 });
+    } else {
+      console.log('Object not found.');
+    }
+    this.suggested_amount -= parseFloat(dishToRemove.price.toFixed(2));
+    this.updatePrice();
     this.emitSelectedMenu()
   }
 

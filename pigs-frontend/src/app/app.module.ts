@@ -91,6 +91,11 @@ import { ProviderModificationComponent } from './components/2-0-provider-related
 import { ProviderTableComponent } from './components/2-0-provider-related-components/provider-table/provider-table.component';
 import { ProviderDetailsComponent } from './components/2-0-provider-related-components/provider-details/provider-details.component';
 
+// Order
+import { OrderListComponent } from './components/1-4-order-related-components/order-list/order-list.component';
+import { OrderModificationComponent } from './components/1-4-order-related-components/order-modification/order-modification.component';
+import { OrderDetailsComponent } from './components/1-4-order-related-components/order-details/order-details.component';
+import { OrderTableComponent } from './components/1-4-order-related-components/order-table/order-table.component';
 
 
 @NgModule({
@@ -121,6 +126,10 @@ import { ProviderDetailsComponent } from './components/2-0-provider-related-comp
     ProviderModificationComponent,
     ProviderTableComponent,
     ProviderDetailsComponent,
+    OrderListComponent,
+    OrderDetailsComponent,
+    OrderModificationComponent,
+    OrderTableComponent,
 
     // Pages
     HomePageComponent,

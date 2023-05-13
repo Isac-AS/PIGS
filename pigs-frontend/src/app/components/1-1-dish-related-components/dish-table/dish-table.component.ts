@@ -24,6 +24,7 @@ export class DishTableComponent {
     name: "",
     ingredients: [],
     path: "dishes",
+    price: 0,
     id: ""
   }
 

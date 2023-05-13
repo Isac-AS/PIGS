@@ -1,0 +1,27 @@
+<mat-card id="order-information-card">
+  <mat-card-header>
+    <mat-card-title>
+      Information about: Order with ID {{selectedOrder.id}}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>
+        <span matListItemTitle>Price</span>
+        <span matListItemLine>{{selectedOrder.price}} €</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span matListItemTitle>Dishes</span>
+        <div *ngFor="let dish of selectedOrder.dishes">
+          <span matListItemLine>{{dish.name}}</span>
+        </div>
+      </mat-list-item>
+      <mat-list-item>
+        <span matListItemTitle>Menus</span>
+        <div *ngFor="let menu of selectedOrder.menus">
+          <span matListItemLine>{{menu.name}}</span>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

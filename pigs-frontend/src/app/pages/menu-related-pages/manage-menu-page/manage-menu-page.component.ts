@@ -14,6 +14,7 @@ export class ManageMenuPageComponent {
   selectedMenu: Menu = {
     name: "",
     dishes: [],
+    price: 0,
     path: "menus",
     id: ""
   }

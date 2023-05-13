@@ -14,6 +14,7 @@ export class ManageDishesPageComponent {
   selectedDish: Dish = {
     name: "",
     ingredients: [],
+    price: 0,
     path: "dishes",
     id: ""
   }
