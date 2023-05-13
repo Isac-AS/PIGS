@@ -1,23 +1,22 @@
 <mat-card id="dish-information-card">
-  <mat-card-header>
-    <mat-card-title>
-      Information about: {{selectedDish.name}}
-    </mat-card-title>
-  </mat-card-header>
   <mat-card-content>
-    <mat-list>
-      <mat-list-item>
-        <span matListItemTitle>Name</span>
-        <span matListItemLine>{{selectedDish.name}}</span>
-      </mat-list-item>
-      <mat-list-item style="margin-top: 2em;">
-        <span matListItemTitle>Ingredients</span>
-        <div *ngFor="let ingredient of selectedDish.ingredients; let last = last ">
-          <span matListItemLine>Name: {{ingredient.ingredient.name}}</span>
-          <span matListItemLine>Amount: {{ingredient.amount}}</span>
-          <mat-divider *ngIf="!last" style="margin-top: 2em; margin-bottom: 2em;"></mat-divider>
+    <div class="dish-details-component">
+      <div style="gap: 10px">
+        <h3>Name</h3>
+        <p>{{ selectedDish.name }}</p>
+      </div>
+      <div style="gap: 10px">
+        <h3>Ingredients</h3>
+        <div class="dish-ingredients">
+          <div
+            class="dish-ingredient-container"
+            *ngFor="let ingredient of selectedDish.ingredients; let last = last"
+          >
+            <b>{{ ingredient.ingredient.name }}</b>
+            <p>Amount: {{ ingredient.amount }}</p>
+          </div>
         </div>
-      </mat-list-item>
-    </mat-list>
+      </div>
+    </div>
   </mat-card-content>
 </mat-card>

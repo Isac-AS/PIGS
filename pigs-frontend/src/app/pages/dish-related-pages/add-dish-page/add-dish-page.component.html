@@ -1,22 +1,28 @@
 <div class="component-wrapper">
-    <app-dish-modification [selectedDish]="currentDish"
-        (selectedDishEmitter)="updateCurrentDish($event)"></app-dish-modification>
-    <button class="add-dish-button" mat-raised-button color="accent"
-        (click)="saveDish()"
-        [disabled]="currentDish.name == '' || currentDish.ingredients.length <= 0">
-        Add Dish
-    </button>
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>
-                Add ingredients to the dish
-            </mat-card-title>
-        </mat-card-header>
-        <mat-card-content style="margin: 2em 0 2em 0;">
-            <app-dish-ingredient-view *ngIf="selectedDishIngredient.ingredient.id != ''"
-                [selectedDishIngredient]="selectedDishIngredient"
-                (saveDishIngredientEmitter)="addDishIngredient($event)"></app-dish-ingredient-view>
-            <app-ingredient-table (selectedIngredientEmitter)="addNewIngredient($event)"></app-ingredient-table>
-        </mat-card-content>
-    </mat-card>
+  <app-dish-modification
+    [selectedDish]="currentDish"
+    (selectedDishEmitter)="updateCurrentDish($event)"
+  ></app-dish-modification>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Add ingredients to the dish</mat-card-title>
+    </mat-card-header>
+    <app-dish-ingredient-view
+      *ngIf="selectedDishIngredient.ingredient.id != ''"
+      [selectedDishIngredient]="selectedDishIngredient"
+      (saveDishIngredientEmitter)="addDishIngredient($event)"
+    ></app-dish-ingredient-view>
+    <app-ingredient-table
+      (selectedIngredientEmitter)="addNewIngredient($event)"
+    ></app-ingredient-table>
+  </mat-card>
+  <button
+    class="add-dish-button"
+    mat-raised-button
+    color="accent"
+    (click)="saveDish()"
+    [disabled]="currentDish.name == '' || currentDish.ingredients.length <= 0"
+  >
+    Add Dish
+  </button>
 </div>

@@ -1,28 +1,40 @@
 <mat-card>
-    <mat-card-header>
-        <mat-card-title>
-            Dish
-        </mat-card-title>
-        <mat-card-subtitle>
-            The table shows the ingredients and amounts that constitute the dish.
-        </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content style="margin-top: 3em;">
-        <form [formGroup]="nameForm" (ngSubmit)="updateName()">
-            <mat-form-field>
-                <mat-label>Set name</mat-label>
-                <input matInput formControlName="name" type="text">
-                <mat-error *ngIf="nameForm.controls['name'].hasError('required')">
-                    A name is <strong>required</strong>.
-                </mat-error>
-            </mat-form-field>
-            <button mat-raised-button color="primary" type="submit" [disabled]="!nameForm.valid">Save name</button>
-        </form>
-        <app-dish-ingredient-view *ngIf="selectedDishIngredient.ingredient.id != ''"
-            [selectedDishIngredient]="selectedDishIngredient"
-            (saveDishIngredientEmitter)="saveDishIngredient($event)"></app-dish-ingredient-view>
-        <app-dish-Ingredient-table [dishIngredientList]="selectedIngredients"
-            (selectedDishIngredientEmitter)="updateSelectedDishIngredient($event)"
-            (deleteDishIngredientEmitter)="removeSelectedDishIngredient($event)"></app-dish-Ingredient-table>
-    </mat-card-content>
+  <mat-card-header>
+    <mat-card-title> Dish name</mat-card-title>
+  </mat-card-header>
+  <mat-card-content style="margin-top: 1em">
+    <form [formGroup]="nameForm" (ngSubmit)="updateName()">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" type="text" />
+        <mat-error *ngIf="nameForm.controls['name'].hasError('required')">
+          A name is <strong>required</strong>.
+        </mat-error>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!nameForm.valid"
+      >
+        Save name
+      </button>
+    </form>
+    <mat-card-title style="margin-top: 1em">
+      Selected ingredients
+    </mat-card-title>
+    <mat-card-subtitle style="margin-top: 1em">
+      The table shows the ingredients and amounts that constitute the dish.
+    </mat-card-subtitle>
+    <app-dish-ingredient-view
+      *ngIf="selectedDishIngredient.ingredient.id != ''"
+      [selectedDishIngredient]="selectedDishIngredient"
+      (saveDishIngredientEmitter)="saveDishIngredient($event)"
+    ></app-dish-ingredient-view>
+    <app-dish-Ingredient-table
+      [dishIngredientList]="selectedIngredients"
+      (selectedDishIngredientEmitter)="updateSelectedDishIngredient($event)"
+      (deleteDishIngredientEmitter)="removeSelectedDishIngredient($event)"
+    ></app-dish-Ingredient-table>
+  </mat-card-content>
 </mat-card>
