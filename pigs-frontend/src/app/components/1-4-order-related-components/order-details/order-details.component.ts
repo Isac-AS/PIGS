@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Menu } from 'src/app/models/stock.model';
+import { Order } from 'src/app/models/stock.model';
 
 @Component({
   selector: 'app-order-details',
@@ -8,7 +8,7 @@ import { Menu } from 'src/app/models/stock.model';
 })
 export class OrderDetailsComponent {
 
-  @Input() selectedMenu!: Menu;
+  @Input() selectedOrder!: Order;
 
   constructor() { }
 }

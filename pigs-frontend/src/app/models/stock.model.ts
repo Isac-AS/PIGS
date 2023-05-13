@@ -9,6 +9,7 @@ export interface Order {
 export interface Menu {
   name: string,
   dishes: Dish[],
+  price: number,
   path: "menus"
   id: string,
 }
@@ -16,6 +17,7 @@ export interface Menu {
 export interface Dish {
   name: string,
   ingredients: DishIngredient[],
+  price: number,
   path: "dishes",
   id: string,
 }

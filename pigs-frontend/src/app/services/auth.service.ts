@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { DatabaseService } from "./database.service";
 import { GlobalService } from "./global.service";
+import { reload } from "@angular/fire/auth";
 
 @Injectable({
   providedIn: 'root'

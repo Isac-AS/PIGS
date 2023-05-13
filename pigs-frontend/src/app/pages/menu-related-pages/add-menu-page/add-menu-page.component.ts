@@ -16,6 +16,7 @@ export class AddMenuPageComponent {
     dishes: [],
     id: "",
     name: "",
+    price: 0,
     path: 'menus'
   }
 

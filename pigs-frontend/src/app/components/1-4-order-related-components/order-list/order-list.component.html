@@ -9,8 +9,21 @@
       <mat-divider style="margin-top: 1em; margin-bottom: 1em;"></mat-divider>
       <div class="name-delete-pair">
         <h3>{{dish.name}}</h3>
-
+        <button mat-mini-fab color="warn" (click)="emitDishForDeletion(dish)">
+          <mat-icon>delete</mat-icon>
+        </button>
       </div>
     </div>
+  </mat-card-content>
+    <mat-card-content class="card-content-list">
+      <div *ngFor="let menu of selectedOrder.menus" style="width: 100%;">
+        <mat-divider style="margin-top: 1em; margin-bottom: 1em;"></mat-divider>
+        <div class="name-delete-pair">
+          <h3>{{menu.name}}</h3>
+          <button mat-mini-fab color="warn" (click)="emitMenuForDeletion(menu)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
   </mat-card-content>
 </mat-card>

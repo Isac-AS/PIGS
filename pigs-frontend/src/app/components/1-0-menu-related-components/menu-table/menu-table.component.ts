@@ -24,6 +24,7 @@ export class MenuTableComponent {
     name: "",
     dishes: [],
     path: "menus",
+    price: 0,
     id: ""
   }
 

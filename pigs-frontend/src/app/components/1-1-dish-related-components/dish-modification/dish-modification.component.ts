@@ -2,6 +2,7 @@ import { Component, DoCheck, EventEmitter, Input, OnChanges, Output, SimpleChang
 import { FormBuilder, Validators } from '@angular/forms';
 import { GlobalService } from 'src/app/services/global.service';
 import { Dish, DishIngredient } from 'src/app/models/stock.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dish-modification',
@@ -24,10 +25,12 @@ export class DishModificationComponent implements OnChanges, DoCheck {
 
   nameForm = this.fb.group({
     name: ["", Validators.required],
+    price: [0, [ Validators.required, Validators.min(0)]]
   })
 
   constructor(
     private fb: FormBuilder,
+    private _snackBar: MatSnackBar,
     public globalService: GlobalService,
   ) {
     this.selectedDishIngredient = this.cleanDishIngredient;
@@ -41,7 +44,8 @@ export class DishModificationComponent implements OnChanges, DoCheck {
       console.log("Selected Ingredients", this.selectedIngredients)
       this.selectedIngredients = [...this.selectedDish.ingredients];
       this.nameForm.setValue({
-        name: this.selectedDish.name
+        name: this.selectedDish.name,
+        price: this.selectedDish.price
       })
     }
   }
@@ -80,9 +84,11 @@ export class DishModificationComponent implements OnChanges, DoCheck {
     this.selectedDishIngredient = this.cleanDishIngredient;
   }
 
-  updateName() {
+  update() {
     this.selectedDish.name = this.nameForm.value.name!;
+    this.selectedDish.price = this.nameForm.value.price!;
     this.emitSelectedDish();
+    this._snackBar.open("Saved!", "Continue", { duration: 5000 });
   }
 
   emitSelectedDish() {

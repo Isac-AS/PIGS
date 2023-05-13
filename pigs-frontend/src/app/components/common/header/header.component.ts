@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { delay } from 'rxjs';
+import { reload } from '@angular/fire/auth';
 
 
 @Component({
@@ -43,7 +44,8 @@ export class HeaderComponent {
     }
     );
     this.globalService.resetUser();
+    location.reload();
     this._snackBar.open("¡Sesión cerrada con éxito!", "Continuar", { duration: 5000 });
-    this.router.navigate(["/"])
+    
   }
 }

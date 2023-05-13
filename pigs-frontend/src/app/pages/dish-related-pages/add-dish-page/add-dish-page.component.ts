@@ -24,6 +24,7 @@ export class AddDishPageComponent {
     id: "",
     ingredients: [],
     name: "",
+    price: 0,
     path: 'dishes'
   }
 

@@ -12,13 +12,20 @@ import { Dish, Menu, Order } from 'src/app/models/stock.model';
 })
 export class OrderModificationComponent {
 
+  private suggested_amount: number = 0;
+
   @Input() selectedOrder!: Order;
   @Output() selectedOrderEmitter: any = new EventEmitter<any>();
+
+  priceForm = this.fb.group({
+    price: [{value: this.suggested_amount, disabled: true}, [Validators.required, Validators.min(0)]]
+  })
 
   constructor(
     private fb: FormBuilder,
     private db: DatabaseService,
-    public globalService: GlobalService,
+    private _snackBar: MatSnackBar,
+    public globalService: GlobalService
   ) { }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -26,25 +33,59 @@ export class OrderModificationComponent {
     console.log(changes)
     let updatedOrder: Order = changes['selectedOrder'].currentValue;
     this.selectedOrder = updatedOrder;
+    this.priceForm.setValue({
+      price: this.selectedOrder.price
+    })
+  }
+
+  updatePrice(){
+    this.priceForm.setValue({
+      price: parseFloat(this.suggested_amount.toFixed(2)) 
+    })
+    this.selectedOrder.price = this.priceForm.value.price!;
   }
 
   addDishToOrder(newDish: Dish) {
     this.selectedOrder.dishes.push(newDish);
+    this.suggested_amount += parseFloat(newDish.price.toFixed(2));
+    this.updatePrice();
     this.emitSelectedOrder();
   }
 
   addMenuToOrder(newMenu: Menu) {
     this.selectedOrder.menus.push(newMenu);
+    this.suggested_amount += parseFloat(newMenu.price.toFixed(2));
+    this.updatePrice();
     this.emitSelectedOrder();
   }
 
   removeDishFromOrder(dishToRemove: any) {
-    this.selectedOrder.dishes = this.selectedOrder.dishes.filter(dish => dish.id != dishToRemove.id);
-    this.emitSelectedOrder()
+    console.log("removeDishFromOrder");
+    console.log(dishToRemove);
+    const index = this.selectedOrder.dishes.findIndex(dish => dish.id === dishToRemove.id);
+    if (index !== -1) {
+      this.selectedOrder.dishes.splice(index, 1)[0];
+      this._snackBar.open("Deleted!", "Continue", { duration: 2000 });
+    } else {
+      console.log('Object not found.');
+    }
+    this.suggested_amount -= parseFloat(dishToRemove.price.toFixed(2));
+    this.updatePrice();
+    this.emitSelectedOrder();
   }
 
   removeMenuFromOrder(menuToRemove: any) {
-    this.selectedOrder.menus = this.selectedOrder.menus.filter(dish => dish.id != menuToRemove.id);
+    console.log("removeMenuFromOrder");
+    console.log(menuToRemove);
+    const index = this.selectedOrder.menus.findIndex(menu => menu.id === menuToRemove.id);
+    if (index !== -1) {
+      this.selectedOrder.menus.splice(index, 1)[0];
+      this._snackBar.open("Deleted!", "Continue", { duration: 2000 });
+    } else {
+      console.log('Object not found.');
+    }
+    this.suggested_amount -= parseFloat(menuToRemove.price.toFixed(2));
+    this.updatePrice();
     this.emitSelectedOrder()
   }
 

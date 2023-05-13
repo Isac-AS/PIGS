@@ -1,3 +1,20 @@
-<p>
-  pending-orders works!
-</p>
+<mat-tab-group>
+  <!--Order table tab-->
+  <mat-tab label="Order Table">
+    <app-order-table (selectedOrderEmitter)="updateSelectedOrder($event)"></app-order-table>
+  </mat-tab>
+
+  <!--Order Info tab-->
+  <mat-tab label="Detailed Order Information">
+    <app-order-details [selectedOrder]="selectedOrder"></app-order-details>
+  </mat-tab>
+
+  <!--Order edition tab-->
+  <mat-tab label="Modify Order">
+    <app-order-modification [selectedOrder]="selectedOrder" (selectedOrderEmitter)="updateSelectedOrder($event)"></app-order-modification>
+    <button class="add-dish-button" mat-raised-button color="accent" (click)="updateOrder()"
+        [disabled]="selectedOrder.menus.length <= 0 || selectedOrder.dishes.length <= 0 || selectedOrder.price === 0">
+        Update Order
+      </button>
+  </mat-tab>
+</mat-tab-group>

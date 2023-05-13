@@ -9,11 +9,18 @@ import { Dish, Menu, Order } from 'src/app/models/stock.model';
 export class OrderListComponent {
 
   @Input() selectedOrder!: Order;
-  @Output() selectedOrderEmitter: any = new EventEmitter<any>();
+  @Output() selectedDishEmitter: any = new EventEmitter<any>();
+  @Output() selectedMenuEmitter: any = new EventEmitter<any>();
 
   constructor() { }
 
-  ngOnInit() {
+  emitDishForDeletion(dish: Dish){
+    this.selectedDishEmitter.emit(dish)
   }
+
+  emitMenuForDeletion(menu: Menu){
+    this.selectedMenuEmitter.emit(menu)
+  }
+
 
 }

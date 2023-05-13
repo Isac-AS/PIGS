@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { EntryDeletionDialogComponent } from '../../entry-deletion-dialog/entry-deletion-dialog.component';
 import { DatabaseService } from 'src/app/services/database.service';
-import { Menu } from 'src/app/models/stock.model';
+import { Order } from 'src/app/models/stock.model';
 
 @Component({
   selector: 'app-order-table',
@@ -14,16 +14,17 @@ import { Menu } from 'src/app/models/stock.model';
 })
 export class OrderTableComponent {
 
-  @Output() selectedMenuEmitter: any = new EventEmitter<any>()
+  @Output() selectedOrderEmitter: any = new EventEmitter<any>()
 
-  menuList: Menu[] = [];
+  OrderList: Order[] = [];
   displayedColumns: string[] = ['selected', 'name', 'price', 'delete']
-  dataSource: MatTableDataSource<Menu>;
+  dataSource: MatTableDataSource<Order>;
 
-  selectedMenu: Menu = {
-    name: "",
+  selectedOrder: Order = {
     dishes: [],
-    path: "menus",
+    menus: [],
+    price: 0,
+    path: "orders",
     id: ""
   }
 
@@ -38,8 +39,8 @@ export class OrderTableComponent {
     private database: DatabaseService,
     public dialog: MatDialog,
   ) {
-    this.dataSource = new MatTableDataSource(this.menuList);
-    this.fetchMenus();
+    this.dataSource = new MatTableDataSource(this.OrderList);
+    this.fetchOrders();
   }
 
   applyFilter(event: Event) {
@@ -51,41 +52,41 @@ export class OrderTableComponent {
     }
   }
 
-  fetchMenus() {
-    this.database.readCollection<Menu>("menus").subscribe({
-      next: (menus) => {
-        console.log("[DEBUG] - Menus collection")
-        console.log(menus)
-        this.menuList = menus;
-        this.dataSource = new MatTableDataSource(this.menuList);
+  fetchOrders() {
+    this.database.readCollection<Order>("orders").subscribe({
+      next: (Orders) => {
+        console.log("[DEBUG] - Orders collection")
+        console.log(Orders)
+        this.OrderList = Orders;
+        this.dataSource = new MatTableDataSource(this.OrderList);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }
     })
   }
 
-  openDeletionDialog(menu_id: string) {
+  openDeletionDialog(Order_id: string) {
     const dialogRef = this.dialog.open(EntryDeletionDialogComponent)
     dialogRef.afterClosed().subscribe(
       result => {
         if (result == true) {
-          this.deleteMenu(menu_id)
+          this.deleteOrder(Order_id)
         }
         console.log(result)
       }
     )
   }
 
-  deleteMenu(menu_id: string) {
-    this.database.deleteDocument("menus", menu_id).catch(
+  deleteOrder(Order_id: string) {
+    this.database.deleteDocument("orders", Order_id).catch(
       (error) => {
         console.log(error)
       })
-    this.fetchMenus();
+    this.fetchOrders();
   }
 
-  emitMenu(menu: Menu) {
-    this.selectedMenuEmitter.emit(menu)
+  emitOrder(Order: Order) {
+    this.selectedOrderEmitter.emit(Order)
   }
 
 }
