@@ -86,6 +86,11 @@ import { AuxItemTableComponent } from './components/1-3-aux-Items-related-compon
 import { AuxItemModificationComponent } from './components/1-3-aux-Items-related-components/aux-Items-modification/aux-Items-modification.component';
 import { AuxItemDetailsComponent } from './components/1-3-aux-Items-related-components/aux-Items-details/aux-Items-details.component';
 
+// Order
+import { OrderListComponent } from './components/1-4-order-related-components/order-list/order-list.component';
+import { OrderModificationComponent } from './components/1-4-order-related-components/order-modification/order-modification.component';
+import { OrderDetailsComponent } from './components/1-4-order-related-components/order-details/order-details.component';
+import { OrderTableComponent } from './components/1-4-order-related-components/order-table/order-table.component';
 
 
 @NgModule({
@@ -113,6 +118,10 @@ import { AuxItemDetailsComponent } from './components/1-3-aux-Items-related-comp
     DishIngredientTableComponent,
     DishIngredientViewComponent,
     MenuDishListComponent,
+    OrderListComponent,
+    OrderDetailsComponent,
+    OrderModificationComponent,
+    OrderTableComponent,
 
     // Pages
     HomePageComponent,

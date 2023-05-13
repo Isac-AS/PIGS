@@ -2,6 +2,7 @@ export interface Order {
   dishes: Dish[],
   menus: Menu[],
   price: number,
+  path: "orders",
   id: string,
 }
 

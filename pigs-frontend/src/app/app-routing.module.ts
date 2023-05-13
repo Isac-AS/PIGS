@@ -96,6 +96,11 @@ const routes: Routes = [
     path: "manage_providers",
     component: ManageProvidersPageComponent
   },
+  {
+    path: "pending_orders",
+    component: PendingOrdersComponent
+  },
+
 
 ];
 

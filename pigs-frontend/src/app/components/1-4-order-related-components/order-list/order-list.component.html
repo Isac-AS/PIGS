@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Current order
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="card-content-list">
+    <div *ngFor="let dish of selectedOrder.dishes" style="width: 100%;">
+      <mat-divider style="margin-top: 1em; margin-bottom: 1em;"></mat-divider>
+      <div class="name-delete-pair">
+        <h3>{{dish.name}}</h3>
+
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

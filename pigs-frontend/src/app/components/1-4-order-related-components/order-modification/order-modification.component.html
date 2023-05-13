@@ -1,0 +1,15 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Order
+        </mat-card-title>
+        <mat-card-subtitle>
+            The table shows the menus and dishes that can be added to the order.
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content style="margin-top: 3em;">
+        <app-order-list [selectedOrder]="selectedOrder" (selectedDishEmitter)="removeDishFromOrder($event)" (selectedMenuEmitter)="removeMenuFromOrder($event)"></app-order-list>
+        <app-menu-table (selectedMenuEmitter)="addMenuToOrder($event)"></app-menu-table>
+        <app-dish-table (selectedDishEmitter)="addDishToOrder($event)"></app-dish-table>
+    </mat-card-content>
+</mat-card>

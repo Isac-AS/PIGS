@@ -1,3 +1,6 @@
-<p>
-  new-order-page works!
-</p>
+<app-order-modification [selectedOrder]="selectedOrder"
+  (selectedOrderEmitter)="updateSelectedOrder($event)"></app-order-modification>
+<button class="add-dish-button" mat-raised-button color="accent" (click)="saveMenu()"
+  [disabled]="selectedOrder.menus.length <= 0 && selectedOrder.dishes.length <= 0">
+  Create Order
+</button>
