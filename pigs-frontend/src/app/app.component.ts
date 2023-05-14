@@ -63,7 +63,11 @@ export class AppComponent {
       title: 'Aux Items',
       routes: [
         { route: '/add_aux', name: 'Add Items', icon: 'add' },
-        { route: '/manage_aux', name: 'Manage Items', icon: 'mop' },
+        {
+          route: '/manage_aux',
+          name: 'Manage Items',
+          icon: 'sanitizer',
+        },
       ],
       icon: 'clean_hands',
     },

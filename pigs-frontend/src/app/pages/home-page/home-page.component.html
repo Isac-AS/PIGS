@@ -1,77 +1,94 @@
-<mat-card id="welcome-section" color="primary">
-  <h1>StockSync</h1>
-  <h2>Sistema de gestión de inventario</h2>
-  <a mat-raised-button color="primary">
-    Comenzar
-  </a>
-</mat-card>
-
-<div class="card-wrapper">
-  <div class="row">
-    <div class="column">
-      <mat-card>
+<div id="welcome-section" color="primary">
+  <h1>Dishes</h1>
+  <div class="card-wrapper">
+    <div class="dishes-container">
+      <mat-card *ngFor="let dish of dishList">
         <mat-card-header>
-          <h1>Agrega ingredientes</h1>
+          <mat-card-title>
+            {{ dish.name }}
+          </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <h3>Agrega ingredientes</h3>
-        </mat-card-content>
-        <mat-card-actions>
-          <a mat-raised-button color="primary">
-            <span>Ingredientes!!</span>
-            <mat-icon>visibility</mat-icon>
-          </a>
-        </mat-card-actions>
-      </mat-card>
-    </div>
+          <h4>Ingredients:</h4>
+          <table mat-table [dataSource]="dish.ingredients">
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.ingredient.name }}
+              </td>
+            </ng-container>
 
-    <div class="column">
-      <mat-card>
-        <mat-card-header>
-          <h1>Agrega menús!!!</h1>
-        </mat-card-header>
-        <mat-card-content>
-          <h3>Selecciona menús a partir de platos</h3>
+            <ng-container matColumnDef="amount">
+              <th mat-header-cell *matHeaderCellDef>Amount</th>
+              <td mat-cell *matCellDef="let element">{{ element.amount }}</td>
+            </ng-container>
+
+            <tr
+              mat-header-row
+              *matHeaderRowDef="displayedIngredientsColumns"
+            ></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: displayedIngredientsColumns"
+            ></tr>
+          </table>
         </mat-card-content>
-        <mat-card-actions>
-          <a mat-raised-button color="primary">
-            <span>¡Vamos!</span>
-          </a>
-        </mat-card-actions>
+        <mat-card-footer>
+          <div class="price-container">{{ dish.price }} €</div>
+        </mat-card-footer>
       </mat-card>
     </div>
   </div>
-  <div class="row">
-    <div class="column">
-      <mat-card>
+  <h1>Menus</h1>
+  <div class="card-wrapper">
+    <div class="menus-container">
+      <mat-card *ngFor="let menu of menuList">
         <mat-card-header>
-          <h1>Agrega platos!!!</h1>
+          <mat-card-title>
+            {{ menu.name }}
+          </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <h3>Nuevos platos uwu</h3>
+          <h4>Dishes:</h4>
+          <table mat-table [dataSource]="menu.dishes">
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.name }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+              <th mat-header-cell *matHeaderCellDef>Price</th>
+              <td mat-cell *matCellDef="let element">{{ element.price }} €</td>
+            </ng-container>
+
+            <ng-container matColumnDef="ingredients">
+              <th mat-header-cell *matHeaderCellDef>Ingredients</th>
+              <td mat-cell *matCellDef="let element">
+                <mat-list>
+                  <mat-list-item *ngFor="let ingredient of element.ingredients">
+                    <span class="list-title" matListItemTitle
+                      >{{ ingredient.ingredient.name }}
+                    </span>
+                    <span class="list-line" matListItemLine
+                      >Amount: {{ ingredient.amount }}</span
+                    >
+                  </mat-list-item>
+                </mat-list>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedDishesColumns"></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: displayedDishesColumns"
+            ></tr>
+          </table>
         </mat-card-content>
-        <mat-card-actions>
-          <a mat-raised-button color="primary">
-            <span>Boom</span>
-            <mat-icon>visibility</mat-icon>
-          </a>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-    <div class="column">
-      <mat-card>
-        <mat-card-header>
-          <h1>Bof</h1>
-        </mat-card-header>
-        <mat-card-content>
-          <h3>Juan Manu el Preciso</h3>
-        </mat-card-content>
-        <mat-card-actions>
-          <a mat-raised-button color="primary">
-            <span>^-^</span>
-            <mat-icon>edit</mat-icon>
-          </a>
-        </mat-card-actions>
+        <mat-card-footer>
+          <div class="price-container">{{ menu.price }} €</div>
+        </mat-card-footer>
       </mat-card>
     </div>
   </div>
