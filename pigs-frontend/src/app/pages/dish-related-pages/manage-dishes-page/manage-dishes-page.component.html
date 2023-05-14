@@ -1,7 +1,9 @@
 <mat-tab-group>
   <!--Dish table tab-->
   <mat-tab label="Dish Table">
-    <app-dish-table (selectedDishEmitter)="updateSelectedDish($event)"></app-dish-table>
+    <app-dish-table
+      (selectedDishEmitter)="updateSelectedDish($event)"
+    ></app-dish-table>
   </mat-tab>
 
   <!--Dish Info tab-->
@@ -11,11 +13,22 @@
 
   <!--Dish edition tab-->
   <mat-tab label="Modify Dish">
-    <app-dish-modification [selectedDish]="selectedDish"
-      (selectedDishEmitter)="updateSelectedDish($event)"></app-dish-modification>
-    <button class="add-dish-button" mat-raised-button color="accent" (click)="updateDish()"
-      [disabled]="selectedDish.name == '' || selectedDish.ingredients.length <= 0">
-      Update Dish
-    </button>
+    <app-dish-modification
+      [selectedDish]="selectedDish"
+      (selectedDishEmitter)="updateSelectedDish($event)"
+    ></app-dish-modification>
+    <div style="display: flex; justify-content: center; margin-bottom: 2em">
+      <button
+        class="add-dish-button"
+        mat-raised-button
+        color="accent"
+        (click)="updateDish()"
+        [disabled]="
+          selectedDish.name == '' || selectedDish.ingredients.length <= 0
+        "
+      >
+        Update Dish
+      </button>
+    </div>
   </mat-tab>
 </mat-tab-group>

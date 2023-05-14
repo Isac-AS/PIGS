@@ -1,6 +1,17 @@
-<app-order-modification [selectedOrder]="selectedOrder"
-  (selectedOrderEmitter)="updateSelectedOrder($event)"></app-order-modification>
-<button class="add-dish-button" mat-raised-button color="accent" (click)="saveMenu()"
-  [disabled]="selectedOrder.menus.length <= 0 && selectedOrder.dishes.length <= 0">
-  Create Order
-</button>
+<app-order-modification
+  [selectedOrder]="selectedOrder"
+  (selectedOrderEmitter)="updateSelectedOrder($event)"
+></app-order-modification>
+<div style="display: flex; justify-content: center; margin-bottom: 2em">
+  <button
+    class="create-order-button"
+    mat-raised-button
+    color="accent"
+    (click)="saveMenu()"
+    [disabled]="
+      selectedOrder.menus.length <= 0 && selectedOrder.dishes.length <= 0
+    "
+  >
+    Create Order
+  </button>
+</div>

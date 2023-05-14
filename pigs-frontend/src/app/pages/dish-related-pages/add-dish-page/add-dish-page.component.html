@@ -16,13 +16,15 @@
       (selectedIngredientEmitter)="addNewIngredient($event)"
     ></app-ingredient-table>
   </mat-card>
-  <button
-    class="add-dish-button"
-    mat-raised-button
-    color="accent"
-    (click)="saveDish()"
-    [disabled]="currentDish.name == '' || currentDish.ingredients.length <= 0"
-  >
-    Add Dish
-  </button>
+  <div style="display: flex; justify-content: center; margin-bottom: 2em">
+    <button
+      class="add-dish-button"
+      mat-raised-button
+      color="accent"
+      (click)="saveDish()"
+      [disabled]="currentDish.name == '' || currentDish.ingredients.length <= 0"
+    >
+      Add Dish
+    </button>
+  </div>
 </div>

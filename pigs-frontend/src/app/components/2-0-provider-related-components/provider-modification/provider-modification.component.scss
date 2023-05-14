@@ -1,38 +1,43 @@
 mat-card {
-    margin: 2em 0 2em 0;
+  margin: 2em 0 2em 0;
 }
 
 mat-form-field {
-    width: stretch;
+  width: stretch;
 }
 
 #submit-card-actions {
-    display: flex;
-    flex-flow: row;
-    justify-content: center;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
 }
 
 .error-form-card {
-    margin: 3em 25% 2em 25%;
-    padding-bottom: 1em;
-    background-color: rgba(239, 113, 113, 0.525);
+  margin: 3em 25% 2em 25%;
+  padding-bottom: 1em;
+  background-color: rgba(239, 113, 113, 0.525);
 }
-
 
 .items-card-content {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 
-.listed-item{
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: space-around;
-    margin-bottom: 1.5em;
+.listed-item {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 1.5em;
 }
 
-.listed-item span{
-    margin-right: 3em;
+.listed-item span {
+  margin-right: 3em;
+}
+
+.save-button {
+  margin: 1em;
+  padding: 2em;
+  font-size: large;
 }

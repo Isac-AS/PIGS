@@ -13,7 +13,7 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Price</mat-label>
-        <input matInput formControlName="price" type="number"/>
+        <input matInput formControlName="price" type="number" />
         <span matTextPrefix>€&nbsp;</span>
         <mat-error *ngIf="nameForm.controls['price'].hasError('min')">
           A price, bigger than 0, is <strong>required</strong>.
@@ -22,14 +22,16 @@
           A price is <strong>required</strong>.
         </mat-error>
       </mat-form-field>
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
-        [disabled]="!nameForm.valid"
-      >
-        Save
-      </button>
+      <div style="display: flex; justify-content: center">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!nameForm.valid"
+        >
+          Save
+        </button>
+      </div>
     </form>
     <mat-card-title style="margin-top: 1em">
       Selected ingredients

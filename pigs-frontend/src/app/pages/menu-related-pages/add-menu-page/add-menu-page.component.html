@@ -1,6 +1,15 @@
-<app-menu-modification [selectedMenu]="selectedMenu"
-  (selectedMenuEmitter)="updateSelectedMenu($event)"></app-menu-modification>
-<button class="add-dish-button" mat-raised-button color="accent" (click)="saveMenu()"
-  [disabled]="selectedMenu.name == '' || selectedMenu.dishes.length <= 0">
-  Create Menu
-</button>
+<app-menu-modification
+  [selectedMenu]="selectedMenu"
+  (selectedMenuEmitter)="updateSelectedMenu($event)"
+></app-menu-modification>
+<div style="display: flex; justify-content: center; margin-bottom: 2em">
+  <button
+    class="add-menu-button"
+    mat-raised-button
+    color="accent"
+    (click)="saveMenu()"
+    [disabled]="selectedMenu.name == '' || selectedMenu.dishes.length <= 0"
+  >
+    Create Menu
+  </button>
+</div>

@@ -1,7 +1,9 @@
 <mat-tab-group>
   <!--Order table tab-->
   <mat-tab label="Order Table">
-    <app-order-table (selectedOrderEmitter)="updateSelectedOrder($event)"></app-order-table>
+    <app-order-table
+      (selectedOrderEmitter)="updateSelectedOrder($event)"
+    ></app-order-table>
   </mat-tab>
 
   <!--Order Info tab-->
@@ -11,10 +13,24 @@
 
   <!--Order edition tab-->
   <mat-tab label="Modify Order">
-    <app-order-modification [selectedOrder]="selectedOrder" (selectedOrderEmitter)="updateSelectedOrder($event)"></app-order-modification>
-    <button class="add-dish-button" mat-raised-button color="accent" (click)="updateOrder()"
-        [disabled]="selectedOrder.menus.length <= 0 || selectedOrder.dishes.length <= 0 || selectedOrder.price === 0">
+    <app-order-modification
+      [selectedOrder]="selectedOrder"
+      (selectedOrderEmitter)="updateSelectedOrder($event)"
+    ></app-order-modification>
+    <div style="display: flex; justify-content: center; margin-bottom: 2em">
+      <button
+        class="update-order-button"
+        mat-raised-button
+        color="accent"
+        (click)="updateOrder()"
+        [disabled]="
+          selectedOrder.menus.length <= 0 ||
+          selectedOrder.dishes.length <= 0 ||
+          selectedOrder.price === 0
+        "
+      >
         Update Order
       </button>
+    </div>
   </mat-tab>
 </mat-tab-group>
