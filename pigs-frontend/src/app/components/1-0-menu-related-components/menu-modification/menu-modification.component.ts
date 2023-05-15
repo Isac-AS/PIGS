@@ -33,6 +33,7 @@ export class MenuModificationComponent {
     console.log(changes)
     let updatedMenu: Menu = changes['selectedMenu'].currentValue;
     this.selectedMenu = updatedMenu;
+    this.suggested_amount = this.selectedMenu.price;
     this.nameForm.setValue({
       name: updatedMenu.name,
       price: updatedMenu.price
@@ -41,16 +42,15 @@ export class MenuModificationComponent {
 
   addDishToMenu(newDish: Dish) {
     this.selectedMenu.dishes.push(newDish);
-    this.suggested_amount += parseFloat(newDish.price.toFixed(2));
-    this.updatePrice();
+    this.suggested_amount += parseFloat((newDish.price * 0.9).toFixed(2));
+    this.updatePrice(true);
     this.emitSelectedMenu();
   }
 
-  updatePrice(){
-    let fixed_amount = this.suggested_amount * 0.9;
+  updatePrice(mul: Boolean){
     this.nameForm.setValue({
       name: this.selectedMenu.name,
-      price: parseFloat(fixed_amount.toFixed(2)) 
+      price: parseFloat(this.suggested_amount.toFixed(2)) 
     })
   }
 
@@ -69,8 +69,8 @@ export class MenuModificationComponent {
     } else {
       console.log('Object not found.');
     }
-    this.suggested_amount -= parseFloat(dishToRemove.price.toFixed(2));
-    this.updatePrice();
+    this.suggested_amount -= parseFloat((dishToRemove.price * 0.9).toFixed(2));
+    this.updatePrice(false);
     this.emitSelectedMenu()
   }
 

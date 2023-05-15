@@ -33,6 +33,7 @@ export class OrderModificationComponent {
     console.log(changes)
     let updatedOrder: Order = changes['selectedOrder'].currentValue;
     this.selectedOrder = updatedOrder;
+    this.suggested_amount = this.selectedOrder.price;
     this.priceForm.setValue({
       price: this.selectedOrder.price
     })

@@ -24,8 +24,6 @@
         color="accent"
         (click)="updateOrder()"
         [disabled]="
-          selectedOrder.menus.length <= 0 ||
-          selectedOrder.dishes.length <= 0 ||
           selectedOrder.price === 0
         "
       >
