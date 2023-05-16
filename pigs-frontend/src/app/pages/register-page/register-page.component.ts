@@ -27,7 +27,7 @@ export class RegisterPageComponent {
   })
 
   possibleProfiles = [
-    { name: 'Empleado', value: 'EMPLOYEE' },
+    { name: 'Employee', value: 'EMPLOYEE' },
     { name: 'Manager', value: 'MANAGER' }
   ]
 
